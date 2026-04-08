@@ -13,7 +13,7 @@ const units = [
     reference: "Ao lado do Subway, no retorno em frente ao Dom.",
     phone: "(21) 97611-4309",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com/?q=R.+Rio+Grande+do+Norte+8+loja+b+Santa+Cruz+da+Serra+Duque+de+Caxias+RJ+25260-030",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=R.%20Rio%20Grande%20do%20Norte%2C%208%20-%20Loja%20B%2C%20Santa%20Cruz%20da%20Serra%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025260-030",
     hours: {
       "Segunda a Quinta": "13h às 22h",
       "Sexta, Sábado e Domingo": "13h às 23h",
@@ -25,7 +25,7 @@ const units = [
     reference: "Ao lado dos Correios, logo no início da Praça da Mantiqueira.",
     phone: "(21) 97611-4309",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com/?q=R.+Pastor+Manoel+Avelino+de+Souza+15+Mantiquira+Duque+de+Caxias+RJ+25250-406",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=R.%20Pastor%20Manoel%20Avelino%20de%20Souza%2C%2015%2C%20Mantiquira%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025250-406",
     hours: {
       "Segunda a Quinta": "13h às 22h",
       "Sexta, Sábado e Domingo": "13h às 23h",

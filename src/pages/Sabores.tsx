@@ -12,6 +12,12 @@ import imgSorbetMorango from "@/assets/sabores/sorbet-morango.jpg";
 import imgBaunilhaCaramelo from "@/assets/sabores/baunilha-caramelo.jpg";
 import imgSorbetMaracuja from "@/assets/sabores/sorbet-maracuja-manga.jpg";
 import imgCheesecake from "@/assets/sabores/cheesecake-frutas-vermelhas.jpg";
+import imgLeiteNinho from "@/assets/sabores/leite-ninho.jpg";
+import imgOreo from "@/assets/sabores/oreo.jpg";
+import imgDoceDeLeite from "@/assets/sabores/doce-de-leite.jpg";
+import imgPacoca from "@/assets/sabores/pacoca.jpg";
+import imgSorbetFrutasVermelhas from "@/assets/sabores/sorbet-frutas-vermelhas.jpg";
+import imgCafeComLeite from "@/assets/sabores/cafe-com-leite.jpg";
 
 const flavorImages: Record<string, string> = {
   "Pistache": imgPistache,
@@ -21,6 +27,12 @@ const flavorImages: Record<string, string> = {
   "Baunilha com Caramelo Salgado": imgBaunilhaCaramelo,
   "Sorbet de Maracujá com Manga": imgSorbetMaracuja,
   "Cheesecake de Frutas Vermelhas": imgCheesecake,
+  "Leite Ninho": imgLeiteNinho,
+  "Oreo": imgOreo,
+  "Doce de Leite Mineiro": imgDoceDeLeite,
+  "Paçoca": imgPacoca,
+  "Sorbet de Frutas Vermelhas": imgSorbetFrutasVermelhas,
+  "Café com Leite": imgCafeComLeite,
 };
 
 const categories = ["Todos", "Gelato", "Açaí", "Sorbet"];

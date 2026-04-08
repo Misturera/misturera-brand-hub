@@ -24,6 +24,9 @@ import imgPrestigio from "@/assets/sabores/prestigio.jpg";
 import imgChocomenta from "@/assets/sabores/chocomenta.jpg";
 import imgBanoffee from "@/assets/sabores/banoffee.jpg";
 import imgUvaFrutasVermelhas from "@/assets/sabores/uva-frutas-vermelhas.jpg";
+import imgAcaiBanana from "@/assets/sabores/acai-banana.jpg";
+import imgAcaiMaracuja from "@/assets/sabores/acai-maracuja.jpg";
+import imgAcaiGuarana from "@/assets/sabores/acai-guarana.jpg";
 
 const flavorImages: Record<string, string> = {
   "Pistache": imgPistache,
@@ -45,6 +48,9 @@ const flavorImages: Record<string, string> = {
   "Chocomenta": imgChocomenta,
   "Banoffee": imgBanoffee,
   "Uva com Frutas Vermelhas": imgUvaFrutasVermelhas,
+  "Açaí com Banana": imgAcaiBanana,
+  "Açaí com Maracujá": imgAcaiMaracuja,
+  "Açaí com Guaraná": imgAcaiGuarana,
 };
 
 const categories = ["Todos", "Gelato", "Açaí", "Sorbet"];

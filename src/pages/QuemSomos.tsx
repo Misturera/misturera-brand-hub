@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Card, CardContent } from "@/components/ui/card";
 import { Leaf, Heart, ShieldCheck, Users, Sparkles, Award } from "lucide-react";
+import fundadorImg from "@/assets/fundador-gelatiere.jpg";
 
 const values = [
   { icon: Leaf, title: "Produção Própria", desc: "Desenvolvemos nossos sabores com ingredientes selecionados e processos artesanais controlados." },
@@ -33,8 +34,8 @@ export default function QuemSomos() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-muted rounded-lg aspect-[4/3] flex items-center justify-center">
-              <span className="text-muted-foreground font-sans text-sm">Foto institucional</span>
+            <div className="rounded-lg overflow-hidden aspect-[4/3]">
+              <img src={fundadorImg} alt="Fundador da Misturêra — produção artesanal própria" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-6">

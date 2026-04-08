@@ -185,7 +185,7 @@ export default function Index() {
             {units.map((unit, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-sm bg-warm-white">
                 <img
-                  src={i === 0 ? fachadaSantaCruz : gelatosImg}
+                  src={i === 0 ? fachadaSantaCruz : xeremToppings}
                   alt={unit.name}
                   className="w-full aspect-video object-cover"
                   loading="lazy"

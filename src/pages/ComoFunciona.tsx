@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Card, CardContent } from "@/components/ui/card";
 import { CupSoda, IceCream, Sparkles, Scale, Heart } from "lucide-react";
+import toppingsImg from "@/assets/unidade-xerem-toppings.jpg";
 
 const steps = [
   {

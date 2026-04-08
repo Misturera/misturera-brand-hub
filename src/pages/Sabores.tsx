@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Leaf } from "lucide-react";
+import gelatosImg from "@/assets/gelatos-cubas.jpg";
 
 const categories = ["Todos", "Gelato", "Açaí", "Sorbet"];
 
@@ -83,8 +84,8 @@ export default function Sabores() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filtered.map((flavor, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-sm hover:shadow-md transition-shadow bg-card">
-                <div className="bg-muted aspect-square flex items-center justify-center relative">
-                  <span className="text-muted-foreground font-sans text-sm">Foto do sabor</span>
+                <div className="aspect-square overflow-hidden relative">
+                  <img src={gelatosImg} alt={flavor.name} className="w-full h-full object-cover" loading="lazy" />
                   {flavor.featured && (
                     <span className="absolute top-3 right-3 bg-secondary text-secondary-foreground text-xs font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3" /> Destaque

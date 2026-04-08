@@ -55,7 +55,8 @@ export default function Index() {
     <Layout>
       {/* Hero */}
       <section className="relative bg-primary overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-primary opacity-90" />
+        <img src={gelatosImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary/90" />
         <div className="container relative py-24 md:py-36 lg:py-44">
           <div className="max-w-3xl">
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
@@ -146,8 +147,8 @@ export default function Index() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredFlavors.map((flavor, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-sm hover:shadow-md transition-shadow bg-card">
-                <div className="bg-muted aspect-square flex items-center justify-center relative">
-                  <span className="text-muted-foreground font-sans text-sm">Foto do sabor</span>
+                <div className="aspect-square overflow-hidden relative">
+                  <img src={gelatosImg} alt={flavor.name} className="w-full h-full object-cover" loading="lazy" />
                   {flavor.featured && (
                     <span className="absolute top-3 right-3 bg-secondary text-secondary-foreground text-xs font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3" /> Destaque

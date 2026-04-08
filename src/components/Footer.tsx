@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
 
-const WHATSAPP_NUMBER = "5500000000000";
+const WHATSAPP_NUMBER = "5521970344545";
 
 export function Footer() {
   return (
@@ -46,15 +46,15 @@ export function Footer() {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary-foreground/60 shrink-0" />
                 <div>
-                  <p className="text-sm font-sans font-medium">Misturêra Centro</p>
-                  <p className="text-xs font-sans text-primary-foreground/60">Rua das Flores, 123 — Centro</p>
+                  <p className="text-sm font-sans font-medium">Santa Cruz da Serra</p>
+                  <p className="text-xs font-sans text-primary-foreground/60">Rua Rio Grande do Norte, nº 8</p>
                 </div>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary-foreground/60 shrink-0" />
                 <div>
-                  <p className="text-sm font-sans font-medium">Misturêra Jardins</p>
-                  <p className="text-xs font-sans text-primary-foreground/60">Av. das Palmeiras, 456 — Jardins</p>
+                  <p className="text-sm font-sans font-medium">Xerém</p>
+                  <p className="text-xs font-sans text-primary-foreground/60">Rua Pastor Manoel Avelino de Souza, nº 15</p>
                 </div>
               </div>
             </div>
@@ -64,9 +64,12 @@ export function Footer() {
           <div className="space-y-4">
             <h4 className="font-serif text-lg font-semibold">Contato</h4>
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-primary-foreground/60" />
-                <span className="text-sm font-sans text-primary-foreground/70">Seg-Dom: 12h às 22h</span>
+              <div className="flex items-start gap-2">
+                <Clock className="w-4 h-4 text-primary-foreground/60 mt-0.5" />
+                <div>
+                  <span className="text-sm font-sans text-primary-foreground/70 block">Seg-Qui: 13h às 22h</span>
+                  <span className="text-sm font-sans text-primary-foreground/70 block">Sex-Dom: 13h às 23h</span>
+                </div>
               </div>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}

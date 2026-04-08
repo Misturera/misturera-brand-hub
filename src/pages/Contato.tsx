@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
-import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageCircle, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const WHATSAPP_NUMBER = "5500000000000";
+const WHATSAPP_NUMBER = "5521970344545";
 
 const contactCategories = [
   { id: "duvida", label: "Dúvida", emoji: "❓" },
@@ -89,7 +88,6 @@ export default function Contato() {
                 Ou envie uma mensagem
               </h2>
               <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Categoria */}
                 <div>
                   <label className="font-sans text-sm font-medium text-foreground block mb-2">
                     Tipo de contato

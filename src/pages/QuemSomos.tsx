@@ -41,14 +41,10 @@ export default function QuemSomos() {
                 Nosso propósito
               </h2>
               <p className="font-sans text-muted-foreground leading-relaxed mb-4">
-                A Misturêra existe para democratizar o acesso ao gelato artesanal de verdade.
-                Acreditamos que ingredientes de qualidade, produção cuidadosa e um ambiente
-                bem pensado podem transformar um simples sorvete em uma experiência memorável.
+                A Misturêra é uma gelateria e açaíteria self-service com produção própria, criada para oferecer sabor de verdade, liberdade de escolha e uma experiência premium sem excessos.
               </p>
               <p className="font-sans text-muted-foreground leading-relaxed">
-                Nosso modelo self-service coloca você no controle: escolha seus sabores,
-                monte suas combinações e descubra novas possibilidades a cada visita.
-                Aqui, não existe o certo ou errado — existe o que te faz feliz.
+                Nossa marca nasceu da vontade de empreender, evoluiu no desafio e se fortaleceu na prática. Hoje, unimos produto artesanal, ambiente acolhedor e cuidado real em cada detalhe para transformar momentos simples em experiências memoráveis.
               </p>
             </div>
           </div>

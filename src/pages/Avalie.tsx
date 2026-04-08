@@ -7,8 +7,8 @@ import { Star, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const units = [
-  { id: "centro", name: "Misturêra Centro" },
-  { id: "jardins", name: "Misturêra Jardins" },
+  { id: "santa-cruz", name: "Misturêra Santa Cruz da Serra" },
+  { id: "xerem", name: "Misturêra Xerém" },
 ];
 
 const criteria = [
@@ -84,7 +84,6 @@ export default function Avalie() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container max-w-2xl">
           <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Seleção de unidade */}
             <div>
               <SectionHeading title="Qual unidade você visitou?" className="mb-6" />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -105,7 +104,6 @@ export default function Avalie() {
               </div>
             </div>
 
-            {/* Critérios */}
             {selectedUnit && (
               <div className="space-y-5 animate-fade-in">
                 <SectionHeading title="Como foi sua experiência?" className="mb-6" />
@@ -119,7 +117,6 @@ export default function Avalie() {
                   </div>
                 ))}
 
-                {/* Comentário */}
                 <div>
                   <label className="font-sans text-sm font-medium text-foreground block mb-2">
                     Deixe um comentário (opcional)

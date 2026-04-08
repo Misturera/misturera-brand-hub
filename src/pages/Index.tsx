@@ -7,6 +7,9 @@ import {
   MessageCircle, MapPin, Clock, Star, ArrowRight,
   CupSoda, IceCream, Scale, Sparkles, Heart
 } from "lucide-react";
+import fachadaSantaCruz from "@/assets/unidade-santa-cruz-fachada.jpg";
+import interiorSantaCruz from "@/assets/unidade-santa-cruz-interior.jpg";
+import gelatosImg from "@/assets/gelatos-cubas.jpg";
 
 const WHATSAPP_NUMBER = "5521976114309";
 const WHATSAPP_MESSAGE = "Olá! Gostaria de saber mais sobre a Misturêra.";
@@ -99,8 +102,8 @@ export default function Index() {
                 </Button>
               </Link>
             </div>
-            <div className="bg-muted rounded-lg aspect-[4/3] flex items-center justify-center">
-              <span className="text-muted-foreground font-sans text-sm">Foto institucional</span>
+            <div className="rounded-lg overflow-hidden aspect-[4/3]">
+              <img src={interiorSantaCruz} alt="Interior da Misturêra — ambiente acolhedor com plantas e iluminação natural" className="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
         </div>
@@ -179,9 +182,12 @@ export default function Index() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {units.map((unit, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-sm bg-warm-white">
-                <div className="bg-muted aspect-video flex items-center justify-center">
-                  <span className="text-muted-foreground font-sans text-sm">Foto da unidade</span>
-                </div>
+                <img
+                  src={i === 0 ? fachadaSantaCruz : gelatosImg}
+                  alt={unit.name}
+                  className="w-full aspect-video object-cover"
+                  loading="lazy"
+                />
                 <CardContent className="p-6 space-y-4">
                   <h3 className="font-serif text-xl font-semibold text-foreground">{unit.name}</h3>
                   <div className="space-y-2">

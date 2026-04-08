@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Clock, MessageCircle, Star, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import fachadaSantaCruz from "@/assets/unidade-santa-cruz-fachada.jpg";
+import interiorSantaCruz from "@/assets/unidade-santa-cruz-interior.jpg";
+import gelatosImg from "@/assets/gelatos-cubas.jpg";
 
 const WHATSAPP_NUMBER = "5521976114309";
 
@@ -54,9 +57,12 @@ export default function Unidades() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {units.map((unit, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-md bg-warm-white">
-                <div className="bg-muted aspect-video flex items-center justify-center">
-                  <span className="text-muted-foreground font-sans text-sm">Foto da unidade</span>
-                </div>
+                <img
+                  src={i === 0 ? fachadaSantaCruz : gelatosImg}
+                  alt={unit.name}
+                  className="w-full aspect-video object-cover"
+                  loading="lazy"
+                />
                 <CardContent className="p-6 md:p-8 space-y-5">
                   <h2 className="font-serif text-2xl font-bold text-foreground">{unit.name}</h2>
 

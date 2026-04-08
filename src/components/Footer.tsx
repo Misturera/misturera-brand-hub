@@ -48,14 +48,14 @@ export function Footer() {
                 <MapPin className="w-4 h-4 mt-0.5 text-primary-foreground/60 shrink-0" />
                 <div>
                   <p className="text-sm font-sans font-medium">Santa Cruz da Serra</p>
-                  <p className="text-xs font-sans text-primary-foreground/60">Rua Rio Grande do Norte, nº 8</p>
+                  <p className="text-xs font-sans text-primary-foreground/60">R. Rio Grande do Norte, Nº 8 - Loja B</p>
                 </div>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-primary-foreground/60 shrink-0" />
                 <div>
                   <p className="text-sm font-sans font-medium">Xerém</p>
-                  <p className="text-xs font-sans text-primary-foreground/60">Rua Pastor Manoel Avelino de Souza, nº 15</p>
+                  <p className="text-xs font-sans text-primary-foreground/60">R. Pastor Manoel Avelino de Souza, Nº 15</p>
                 </div>
               </div>
             </div>

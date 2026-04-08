@@ -34,14 +34,14 @@ const units = [
     address: "R. Rio Grande do Norte, Nº 8 - Loja B, Santa Cruz da Serra, Duque de Caxias – RJ, 25260-030",
     hours: "Seg-Qui: 13h às 22h · Sex-Dom: 13h às 23h",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com/?q=R.+Rio+Grande+do+Norte+8+loja+b+Santa+Cruz+da+Serra+Duque+de+Caxias+RJ+25260-030",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=R.%20Rio%20Grande%20do%20Norte%2C%208%20-%20Loja%20B%2C%20Santa%20Cruz%20da%20Serra%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025260-030",
   },
   {
     name: "Misturêra Xerém",
     address: "R. Pastor Manoel Avelino de Souza, Nº 15, Mantiquira, Duque de Caxias – RJ, 25250-406",
     hours: "Seg-Qui: 13h às 22h · Sex-Dom: 13h às 23h",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com/?q=R.+Pastor+Manoel+Avelino+de+Souza+15+Mantiquira+Duque+de+Caxias+RJ+25250-406",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=R.%20Pastor%20Manoel%20Avelino%20de%20Souza%2C%2015%2C%20Mantiquira%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025250-406",
   },
 ];
 

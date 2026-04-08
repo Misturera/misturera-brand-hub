@@ -15,7 +15,7 @@ const navLinks = [
   { label: "Contato", path: "/contato" },
 ];
 
-const WHATSAPP_NUMBER = "5521970344545";
+const WHATSAPP_NUMBER = "5521976114309";
 const WHATSAPP_MESSAGE = "Olá! Gostaria de saber mais sobre a Misturêra.";
 
 export function Navbar() {

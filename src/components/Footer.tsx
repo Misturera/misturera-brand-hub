@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
 import logoHorizontal from "@/assets/logo-horizontal-branco.png";
 
-const WHATSAPP_NUMBER = "5521970344545";
+const WHATSAPP_NUMBER = "5521976114309";
 
 export function Footer() {
   return (

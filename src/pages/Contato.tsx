@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MessageCircle, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const WHATSAPP_NUMBER = "5521970344545";
+const WHATSAPP_NUMBER = "5521976114309";
 
 const contactCategories = [
   { id: "duvida", label: "Dúvida", emoji: "❓" },

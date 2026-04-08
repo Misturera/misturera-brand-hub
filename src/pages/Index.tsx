@@ -52,7 +52,7 @@ const units = [
     address: "R. Pastor Manoel Avelino de Souza, Nº 15, Mantiquira, Duque de Caxias – RJ, 25250-406",
     hours: "Seg-Qui: 13h às 22h · Sex-Dom: 13h às 23h",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=R.%20Pastor%20Manoel%20Avelino%20de%20Souza%2C%2015%2C%20Mantiquira%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025250-406",
+    mapUrl: "https://maps.app.goo.gl/77oygDvBKPhdGSTV6",
   },
 ];
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, MessageCircle } from "lucide-react";
+import logoHorizontal from "@/assets/logo-horizontal-branco.png";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -26,8 +27,8 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm">
       <div className="container flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="text-primary-foreground font-serif text-2xl md:text-3xl font-bold tracking-tight">
-          Misturêra
+        <Link to="/" className="flex items-center">
+          <img src={logoHorizontal} alt="Misturêra" className="h-8 md:h-10 w-auto" />
         </Link>
 
         {/* Desktop nav */}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
+import logoHorizontal from "@/assets/logo-horizontal-branco.png";
 
 const WHATSAPP_NUMBER = "5521970344545";
 
@@ -10,7 +11,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="font-serif text-2xl font-bold">Misturêra</h3>
+            <img src={logoHorizontal} alt="Misturêra" className="h-8 w-auto" />
             <p className="text-primary-foreground/70 text-sm font-sans leading-relaxed">
               Gelato e açaí self-service com produção própria. Sabor de verdade e experiência feita para surpreender.
             </p>

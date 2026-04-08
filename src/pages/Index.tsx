@@ -12,6 +12,12 @@ import interiorSantaCruz from "@/assets/unidade-santa-cruz-interior.jpg";
 import gelatosImg from "@/assets/gelatos-cubas.jpg";
 import xeremToppings from "@/assets/unidade-xerem-toppings.jpg";
 import xeremEquipe from "@/assets/unidade-xerem-equipe.jpg";
+import imgPistache from "@/assets/sabores/pistache.jpg";
+import imgChocolateBelga from "@/assets/sabores/chocolate-belga.jpg";
+import imgAcaiMorango from "@/assets/sabores/acai-morango.jpg";
+import imgSorbetMorango from "@/assets/sabores/sorbet-morango.jpg";
+import imgBaunilhaCaramelo from "@/assets/sabores/baunilha-caramelo.jpg";
+import imgSorbetMaracuja from "@/assets/sabores/sorbet-maracuja-manga.jpg";
 
 const WHATSAPP_NUMBER = "5521976114309";
 const WHATSAPP_MESSAGE = "Olá! Gostaria de saber mais sobre a Misturêra.";
@@ -25,12 +31,12 @@ const howItWorksSteps = [
 ];
 
 const featuredFlavors = [
-  { name: "Pistache", category: "Gelato", featured: true },
-  { name: "Chocolate Belga", category: "Gelato", featured: true },
-  { name: "Açaí com Morango", category: "Açaí", featured: false },
-  { name: "Sorbet de Morango", category: "Sorbet", featured: false },
-  { name: "Baunilha com Caramelo Salgado", category: "Gelato", featured: true },
-  { name: "Sorbet de Maracujá com Manga", category: "Sorbet", featured: false },
+  { name: "Pistache", category: "Gelato", featured: true, img: imgPistache },
+  { name: "Chocolate Belga", category: "Gelato", featured: true, img: imgChocolateBelga },
+  { name: "Açaí com Morango", category: "Açaí", featured: false, img: imgAcaiMorango },
+  { name: "Sorbet de Morango", category: "Sorbet", featured: false, img: imgSorbetMorango },
+  { name: "Baunilha com Caramelo Salgado", category: "Gelato", featured: true, img: imgBaunilhaCaramelo },
+  { name: "Sorbet de Maracujá com Manga", category: "Sorbet", featured: false, img: imgSorbetMaracuja },
 ];
 
 const units = [
@@ -148,7 +154,7 @@ export default function Index() {
             {featuredFlavors.map((flavor, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-sm hover:shadow-md transition-shadow bg-card">
                 <div className="aspect-square overflow-hidden relative">
-                  <img src={gelatosImg} alt={flavor.name} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={flavor.img} alt={flavor.name} className="w-full h-full object-cover" loading="lazy" />
                   {flavor.featured && (
                     <span className="absolute top-3 right-3 bg-secondary text-secondary-foreground text-xs font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3" /> Destaque

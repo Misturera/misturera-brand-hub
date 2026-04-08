@@ -5,6 +5,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Leaf } from "lucide-react";
 import gelatosImg from "@/assets/gelatos-cubas.jpg";
+import imgPistache from "@/assets/sabores/pistache.jpg";
+import imgChocolateBelga from "@/assets/sabores/chocolate-belga.jpg";
+import imgAcaiMorango from "@/assets/sabores/acai-morango.jpg";
+import imgSorbetMorango from "@/assets/sabores/sorbet-morango.jpg";
+import imgBaunilhaCaramelo from "@/assets/sabores/baunilha-caramelo.jpg";
+import imgSorbetMaracuja from "@/assets/sabores/sorbet-maracuja-manga.jpg";
+import imgCheesecake from "@/assets/sabores/cheesecake-frutas-vermelhas.jpg";
+
+const flavorImages: Record<string, string> = {
+  "Pistache": imgPistache,
+  "Chocolate Belga": imgChocolateBelga,
+  "Açaí com Morango": imgAcaiMorango,
+  "Sorbet de Morango": imgSorbetMorango,
+  "Baunilha com Caramelo Salgado": imgBaunilhaCaramelo,
+  "Sorbet de Maracujá com Manga": imgSorbetMaracuja,
+  "Cheesecake de Frutas Vermelhas": imgCheesecake,
+};
 
 const categories = ["Todos", "Gelato", "Açaí", "Sorbet"];
 
@@ -85,7 +102,7 @@ export default function Sabores() {
             {filtered.map((flavor, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-sm hover:shadow-md transition-shadow bg-card">
                 <div className="aspect-square overflow-hidden relative">
-                  <img src={gelatosImg} alt={flavor.name} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={flavorImages[flavor.name] || gelatosImg} alt={flavor.name} className="w-full h-full object-cover" loading="lazy" />
                   {flavor.featured && (
                     <span className="absolute top-3 right-3 bg-secondary text-secondary-foreground text-xs font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3" /> Destaque

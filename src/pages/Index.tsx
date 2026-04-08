@@ -154,7 +154,7 @@ export default function Index() {
             {featuredFlavors.map((flavor, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-sm hover:shadow-md transition-shadow bg-card">
                 <div className="aspect-square overflow-hidden relative">
-                  <img src={gelatosImg} alt={flavor.name} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={flavor.img} alt={flavor.name} className="w-full h-full object-cover" loading="lazy" />
                   {flavor.featured && (
                     <span className="absolute top-3 right-3 bg-secondary text-secondary-foreground text-xs font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3" /> Destaque

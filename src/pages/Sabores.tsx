@@ -3,23 +3,38 @@ import { Layout } from "@/components/Layout";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import { Star, Leaf } from "lucide-react";
 
-const categories = ["Todos", "Gelato", "Sorbet", "Açaí", "Edição Especial"];
+const categories = ["Todos", "Gelato", "Açaí", "Sorbet"];
 
 const flavors = [
-  { name: "Pistache Siciliano", category: "Gelato", desc: "Pistache italiano torrado, cremosidade intensa e aroma marcante.", featured: true },
-  { name: "Chocolate Belga 70%", category: "Gelato", desc: "Cacau nobre com amargor elegante e textura aveludada.", featured: true },
-  { name: "Baunilha de Madagascar", category: "Gelato", desc: "Fava natural, sabor puro e delicado.", featured: false },
-  { name: "Doce de Leite Artesanal", category: "Gelato", desc: "Receita própria, caramelizado no ponto certo.", featured: false },
-  { name: "Morango com Manjericão", category: "Sorbet", desc: "Frescor do morango com toque herbáceo surpreendente.", featured: true },
-  { name: "Maracujá com Gengibre", category: "Sorbet", desc: "Acidez tropical com leve picância aromática.", featured: false },
-  { name: "Limão Siciliano", category: "Sorbet", desc: "Refrescante, cítrico e levemente adocicado.", featured: false },
-  { name: "Açaí Tradicional", category: "Açaí", desc: "Polpa pura do Pará, cremoso e encorpado.", featured: true },
-  { name: "Açaí com Guaraná", category: "Açaí", desc: "Clássico brasileiro com toque energético.", featured: false },
-  { name: "Tiramisù", category: "Edição Especial", desc: "Gelato inspirado no clássico italiano. Café, mascarpone e cacau.", featured: true },
-  { name: "Paçoca Cremosa", category: "Edição Especial", desc: "Amendoim torrado com textura cremosa e toque brasileiro.", featured: false },
-  { name: "Frutas Vermelhas", category: "Gelato", desc: "Mix de framboesa, amora e mirtilo com acidez equilibrada.", featured: false },
+  // Gelatos
+  { name: "Leite Ninho", category: "Gelato", desc: "Cremosidade do leite em pó que todo mundo ama.", featured: false, vegan: false },
+  { name: "Oreo", category: "Gelato", desc: "Pedaços de biscoito Oreo em gelato cremoso.", featured: false, vegan: false },
+  { name: "Cheesecake de Frutas Vermelhas", category: "Gelato", desc: "Inspirado no clássico cheesecake, com frutas vermelhas de verdade.", featured: true, vegan: false },
+  { name: "Pistache", category: "Gelato", desc: "Pistache torrado, cremosidade intensa e aroma marcante.", featured: true, vegan: false },
+  { name: "Chocolate Belga", category: "Gelato", desc: "Cacau nobre com amargor elegante e textura aveludada.", featured: true, vegan: false },
+  { name: "Paçoca", category: "Gelato", desc: "Amendoim torrado com textura cremosa e toque brasileiro.", featured: false, vegan: false },
+  { name: "Snickers", category: "Gelato", desc: "Caramelo, amendoim e chocolate em harmonia perfeita.", featured: false, vegan: false },
+  { name: "Rafaello", category: "Gelato", desc: "Coco ralado, amêndoas e leite condensado.", featured: false, vegan: false },
+  { name: "Prestígio", category: "Gelato", desc: "Chocolate com coco, um clássico irresistível.", featured: false, vegan: false },
+  { name: "Chocomenta", category: "Gelato", desc: "Chocolate intenso com toque refrescante de menta.", featured: false, vegan: false },
+  { name: "Doce de Leite Mineiro", category: "Gelato", desc: "Receita artesanal, caramelizado no ponto certo.", featured: false, vegan: false },
+  { name: "Baunilha com Caramelo Salgado", category: "Gelato", desc: "Fava natural com caramelo salgado artesanal.", featured: true, vegan: false },
+  { name: "Banoffee", category: "Gelato", desc: "Banana, doce de leite e biscoito em perfeita harmonia.", featured: false, vegan: false },
+  { name: "Uva com Frutas Vermelhas", category: "Gelato", desc: "Mix frutado com acidez equilibrada.", featured: false, vegan: false },
+  { name: "Café com Leite", category: "Gelato", desc: "Café torrado com a suavidade do leite.", featured: false, vegan: false },
+
+  // Açaís
+  { name: "Açaí com Morango", category: "Açaí", desc: "Polpa pura com morango. Sem leite, sem gordura, vegano.", featured: true, vegan: true },
+  { name: "Açaí com Banana", category: "Açaí", desc: "Polpa pura com banana. Sem leite, sem gordura, vegano.", featured: false, vegan: true },
+  { name: "Açaí com Maracujá", category: "Açaí", desc: "Polpa pura com maracujá. Sem leite, sem gordura, vegano.", featured: false, vegan: true },
+  { name: "Açaí com Guaraná", category: "Açaí", desc: "Clássico brasileiro com toque energético. Sem leite, sem gordura, vegano.", featured: false, vegan: true },
+
+  // Sorbets
+  { name: "Sorbet de Morango", category: "Sorbet", desc: "Frescor do morango puro. Sem leite, sem gordura, vegano.", featured: false, vegan: true },
+  { name: "Sorbet de Maracujá com Manga", category: "Sorbet", desc: "Acidez tropical com doçura da manga. Sem leite, sem gordura, vegano.", featured: true, vegan: true },
+  { name: "Sorbet de Frutas Vermelhas", category: "Sorbet", desc: "Mix de framboesa, amora e mirtilo. Sem leite, sem gordura, vegano.", featured: false, vegan: true },
 ];
 
 export default function Sabores() {
@@ -39,6 +54,9 @@ export default function Sabores() {
             </h1>
             <p className="font-sans text-lg text-primary-foreground/70 leading-relaxed">
               Todos artesanais, todos com produção própria. Descubra seu favorito.
+            </p>
+            <p className="font-sans text-sm text-primary-foreground/50 mt-3">
+              Cardápio atualizado em 08/04/2026
             </p>
           </div>
         </div>
@@ -70,6 +88,11 @@ export default function Sabores() {
                   {flavor.featured && (
                     <span className="absolute top-3 right-3 bg-secondary text-secondary-foreground text-xs font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3" /> Destaque
+                    </span>
+                  )}
+                  {flavor.vegan && (
+                    <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-sans font-medium px-3 py-1 rounded-full flex items-center gap-1">
+                      <Leaf className="w-3 h-3" /> Vegano
                     </span>
                   )}
                 </div>

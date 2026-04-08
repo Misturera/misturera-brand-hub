@@ -1,35 +1,34 @@
 import { Layout } from "@/components/Layout";
-import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Clock, MessageCircle, Star, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const WHATSAPP_NUMBER = "5500000000000";
+const WHATSAPP_NUMBER = "5521970344545";
 
 const units = [
   {
-    name: "Misturêra Centro",
-    address: "Rua das Flores, 123 — Centro",
-    phone: "(00) 0000-0000",
+    name: "Misturêra Santa Cruz da Serra",
+    address: "Rua Rio Grande do Norte, nº 8, Santa Cruz da Serra, Duque de Caxias – RJ",
+    reference: "Ao lado do Subway, no retorno em frente ao Dom.",
+    phone: "(21) 97034-4545",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com",
+    mapUrl: "https://maps.google.com/?q=Rua+Rio+Grande+do+Norte+8+Santa+Cruz+da+Serra+Duque+de+Caxias+RJ",
     hours: {
-      "Segunda a Sexta": "12h às 22h",
-      "Sábado": "11h às 23h",
-      "Domingo e Feriados": "13h às 21h",
+      "Segunda a Quinta": "13h às 22h",
+      "Sexta, Sábado e Domingo": "13h às 23h",
     },
   },
   {
-    name: "Misturêra Jardins",
-    address: "Av. das Palmeiras, 456 — Jardins",
-    phone: "(00) 0000-0000",
+    name: "Misturêra Xerém",
+    address: "Rua Pastor Manoel Avelino de Souza, nº 15, Mantiqueira, Xerém, Duque de Caxias – RJ",
+    reference: "Ao lado dos Correios, logo no início da Praça da Mantiqueira.",
+    phone: "(21) 97034-4545",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com",
+    mapUrl: "https://maps.google.com/?q=Rua+Pastor+Manoel+Avelino+de+Souza+15+Xerém+Duque+de+Caxias+RJ",
     hours: {
-      "Segunda a Sexta": "13h às 23h",
-      "Sábado": "12h às 00h",
-      "Domingo e Feriados": "13h às 22h",
+      "Segunda a Quinta": "13h às 22h",
+      "Sexta, Sábado e Domingo": "13h às 23h",
     },
   },
 ];
@@ -64,7 +63,10 @@ export default function Unidades() {
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
                       <MapPin className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />
-                      <span className="font-sans text-sm text-muted-foreground">{unit.address}</span>
+                      <div>
+                        <span className="font-sans text-sm text-muted-foreground">{unit.address}</span>
+                        <p className="font-sans text-xs text-muted-foreground/70 mt-0.5">Ref.: {unit.reference}</p>
+                      </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <Phone className="w-5 h-5 text-muted-foreground shrink-0 mt-0.5" />

@@ -8,7 +8,7 @@ import {
   CupSoda, IceCream, Scale, Sparkles, Heart
 } from "lucide-react";
 
-const WHATSAPP_NUMBER = "5500000000000";
+const WHATSAPP_NUMBER = "5521970344545";
 const WHATSAPP_MESSAGE = "Olá! Gostaria de saber mais sobre a Misturêra.";
 
 const howItWorksSteps = [
@@ -20,28 +20,28 @@ const howItWorksSteps = [
 ];
 
 const featuredFlavors = [
-  { name: "Pistache Siciliano", category: "Gelato", featured: true },
-  { name: "Açaí Tradicional", category: "Açaí", featured: false },
-  { name: "Chocolate Belga 70%", category: "Gelato", featured: true },
-  { name: "Morango com Manjericão", category: "Sorbet", featured: false },
-  { name: "Doce de Leite Artesanal", category: "Gelato", featured: false },
-  { name: "Maracujá com Gengibre", category: "Sorbet", featured: true },
+  { name: "Pistache", category: "Gelato", featured: true },
+  { name: "Chocolate Belga", category: "Gelato", featured: true },
+  { name: "Açaí com Morango", category: "Açaí", featured: false },
+  { name: "Sorbet de Morango", category: "Sorbet", featured: false },
+  { name: "Baunilha com Caramelo Salgado", category: "Gelato", featured: true },
+  { name: "Sorbet de Maracujá com Manga", category: "Sorbet", featured: false },
 ];
 
 const units = [
   {
-    name: "Misturêra Centro",
-    address: "Rua das Flores, 123 — Centro",
-    hours: "Seg-Dom: 12h às 22h",
+    name: "Misturêra Santa Cruz da Serra",
+    address: "Rua Rio Grande do Norte, nº 8, Santa Cruz da Serra, Duque de Caxias – RJ",
+    hours: "Seg-Qui: 13h às 22h · Sex-Dom: 13h às 23h",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com",
+    mapUrl: "https://maps.google.com/?q=Rua+Rio+Grande+do+Norte+8+Santa+Cruz+da+Serra+Duque+de+Caxias+RJ",
   },
   {
-    name: "Misturêra Jardins",
-    address: "Av. das Palmeiras, 456 — Jardins",
-    hours: "Seg-Dom: 13h às 23h",
+    name: "Misturêra Xerém",
+    address: "Rua Pastor Manoel Avelino de Souza, nº 15, Mantiqueira, Xerém, Duque de Caxias – RJ",
+    hours: "Seg-Qui: 13h às 22h · Sex-Dom: 13h às 23h",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com",
+    mapUrl: "https://maps.google.com/?q=Rua+Pastor+Manoel+Avelino+de+Souza+15+Xerém+Duque+de+Caxias+RJ",
   },
 ];
 
@@ -87,14 +87,10 @@ export default function Index() {
                 className="text-left mb-6 md:mb-8"
               />
               <p className="font-sans text-muted-foreground leading-relaxed mb-6">
-                A Misturêra nasceu da paixão por criar gelatos e açaís artesanais de verdade.
-                Com produção própria e ingredientes selecionados, oferecemos uma experiência
-                self-service onde você monta sua combinação perfeita.
+                A Misturêra é uma gelateria e açaíteria self-service com produção própria, criada para oferecer sabor de verdade, liberdade de escolha e uma experiência premium sem excessos.
               </p>
               <p className="font-sans text-muted-foreground leading-relaxed mb-8">
-                Cada sabor é desenvolvido com cuidado, cada detalhe do ambiente é pensado
-                para que sua visita seja especial. Somos uma marca que une artesanalidade
-                com padrão profissional.
+                Nossa marca nasceu da vontade de empreender, evoluiu no desafio e se fortaleceu na prática. Hoje, unimos produto artesanal, ambiente acolhedor e cuidado real em cada detalhe para transformar momentos simples em experiências memoráveis.
               </p>
               <Link to="/quem-somos">
                 <Button variant="outline" className="font-sans">
@@ -189,8 +185,8 @@ export default function Index() {
                 <CardContent className="p-6 space-y-4">
                   <h3 className="font-serif text-xl font-semibold text-foreground">{unit.name}</h3>
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm font-sans text-muted-foreground">
-                      <MapPin className="w-4 h-4 shrink-0" />
+                    <div className="flex items-start gap-2 text-sm font-sans text-muted-foreground">
+                      <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
                       <span>{unit.address}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm font-sans text-muted-foreground">
@@ -231,9 +227,7 @@ export default function Index() {
               subtitle="Do sonho de criar algo único à realidade de uma marca que cresce com propósito."
             />
             <p className="font-sans text-muted-foreground leading-relaxed mb-8">
-              A Misturêra começou com uma ideia simples: oferecer gelato artesanal de verdade,
-              com ingredientes de qualidade e uma experiência acessível. Hoje, cada unidade
-              carrega essa essência — e cada sabor conta um pedaço dessa trajetória.
+              A Misturêra nasceu em dezembro de 2024, a partir da vontade de empreender e da oportunidade de trazer para a região um modelo de self-service acessível e atrativo. Hoje, cada unidade carrega essa essência — e cada sabor conta um pedaço dessa trajetória.
             </p>
             <Link to="/nossa-historia">
               <Button variant="outline" className="font-sans">

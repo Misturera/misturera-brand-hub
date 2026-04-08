@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import fachadaSantaCruz from "@/assets/unidade-santa-cruz-fachada.jpg";
 import interiorSantaCruz from "@/assets/unidade-santa-cruz-interior.jpg";
 import gelatosImg from "@/assets/gelatos-cubas.jpg";
+import xeremToppings from "@/assets/unidade-xerem-toppings.jpg";
 
 const WHATSAPP_NUMBER = "5521976114309";
 
@@ -58,7 +59,7 @@ export default function Unidades() {
             {units.map((unit, i) => (
               <Card key={i} className="overflow-hidden border-0 shadow-md bg-warm-white">
                 <img
-                  src={i === 0 ? fachadaSantaCruz : gelatosImg}
+                  src={i === 0 ? fachadaSantaCruz : xeremToppings}
                   alt={unit.name}
                   className="w-full aspect-video object-cover"
                   loading="lazy"

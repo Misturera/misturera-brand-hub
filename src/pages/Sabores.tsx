@@ -5,6 +5,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Leaf } from "lucide-react";
 import gelatosImg from "@/assets/gelatos-cubas.jpg";
+import imgPistache from "@/assets/sabores/pistache.jpg";
+import imgChocolateBelga from "@/assets/sabores/chocolate-belga.jpg";
+import imgAcaiMorango from "@/assets/sabores/acai-morango.jpg";
+import imgSorbetMorango from "@/assets/sabores/sorbet-morango.jpg";
+import imgBaunilhaCaramelo from "@/assets/sabores/baunilha-caramelo.jpg";
+import imgSorbetMaracuja from "@/assets/sabores/sorbet-maracuja-manga.jpg";
+import imgCheesecake from "@/assets/sabores/cheesecake-frutas-vermelhas.jpg";
+
+const flavorImages: Record<string, string> = {
+  "Pistache": imgPistache,
+  "Chocolate Belga": imgChocolateBelga,
+  "Açaí com Morango": imgAcaiMorango,
+  "Sorbet de Morango": imgSorbetMorango,
+  "Baunilha com Caramelo Salgado": imgBaunilhaCaramelo,
+  "Sorbet de Maracujá com Manga": imgSorbetMaracuja,
+  "Cheesecake de Frutas Vermelhas": imgCheesecake,
+};
 
 const categories = ["Todos", "Gelato", "Açaí", "Sorbet"];
 

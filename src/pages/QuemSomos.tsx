@@ -3,6 +3,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Card, CardContent } from "@/components/ui/card";
 import { Leaf, Heart, ShieldCheck, Users, Sparkles, Award } from "lucide-react";
 import fundadorImg from "@/assets/fundador-gelatiere.jpg";
+import xeremInterior from "@/assets/unidade-xerem-interior.jpg";
 
 const values = [
   { icon: Leaf, title: "Produção Própria", desc: "Desenvolvemos nossos sabores com ingredientes selecionados e processos artesanais controlados." },

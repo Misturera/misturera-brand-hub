@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Card, CardContent } from "@/components/ui/card";
 import { CupSoda, IceCream, Sparkles, Scale, Heart } from "lucide-react";
+import toppingsImg from "@/assets/unidade-xerem-toppings.jpg";
 
 const steps = [
   {
@@ -41,8 +42,10 @@ const tips = [
 export default function ComoFunciona() {
   return (
     <Layout>
-      <section className="bg-primary py-20 md:py-28">
-        <div className="container">
+      <section className="relative bg-primary py-20 md:py-28 overflow-hidden">
+        <img src={toppingsImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+        <div className="absolute inset-0 bg-primary/80" />
+        <div className="container relative">
           <div className="max-w-3xl">
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
               Como funciona

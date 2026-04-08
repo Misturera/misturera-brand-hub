@@ -1,5 +1,6 @@
 import { Layout } from "@/components/Layout";
 import { SectionHeading } from "@/components/SectionHeading";
+import fundadorImg from "@/assets/fundador-gelatiere.jpg";
 
 const timeline = [
   { year: "Dez 2024", title: "O início", desc: "A Misturêra nasce da vontade de empreender e da oportunidade de trazer para a região um modelo de açaí self-service acessível, ainda inexistente por aqui." },
@@ -32,8 +33,8 @@ export default function NossaHistoria() {
       <section className="py-16 md:py-24 bg-background">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="bg-muted rounded-lg aspect-[4/3] flex items-center justify-center">
-              <span className="text-muted-foreground font-sans text-sm">Foto institucional — fundação</span>
+            <div className="rounded-lg overflow-hidden aspect-[4/3]">
+              <img src={fundadorImg} alt="Fundador da Misturêra ao lado da máquina de gelato artesanal" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-6">

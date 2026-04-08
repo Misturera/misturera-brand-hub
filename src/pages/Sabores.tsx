@@ -18,6 +18,12 @@ import imgDoceDeLeite from "@/assets/sabores/doce-de-leite.jpg";
 import imgPacoca from "@/assets/sabores/pacoca.jpg";
 import imgSorbetFrutasVermelhas from "@/assets/sabores/sorbet-frutas-vermelhas.jpg";
 import imgCafeComLeite from "@/assets/sabores/cafe-com-leite.jpg";
+import imgSnickers from "@/assets/sabores/snickers.jpg";
+import imgRafaello from "@/assets/sabores/rafaello.jpg";
+import imgPrestigio from "@/assets/sabores/prestigio.jpg";
+import imgChocomenta from "@/assets/sabores/chocomenta.jpg";
+import imgBanoffee from "@/assets/sabores/banoffee.jpg";
+import imgUvaFrutasVermelhas from "@/assets/sabores/uva-frutas-vermelhas.jpg";
 
 const flavorImages: Record<string, string> = {
   "Pistache": imgPistache,
@@ -33,6 +39,12 @@ const flavorImages: Record<string, string> = {
   "Paçoca": imgPacoca,
   "Sorbet de Frutas Vermelhas": imgSorbetFrutasVermelhas,
   "Café com Leite": imgCafeComLeite,
+  "Snickers": imgSnickers,
+  "Rafaello": imgRafaello,
+  "Prestígio": imgPrestigio,
+  "Chocomenta": imgChocomenta,
+  "Banoffee": imgBanoffee,
+  "Uva com Frutas Vermelhas": imgUvaFrutasVermelhas,
 };
 
 const categories = ["Todos", "Gelato", "Açaí", "Sorbet"];

@@ -8,7 +8,7 @@ import {
   CupSoda, IceCream, Scale, Sparkles, Heart
 } from "lucide-react";
 
-const WHATSAPP_NUMBER = "5521970344545";
+const WHATSAPP_NUMBER = "5521976114309";
 const WHATSAPP_MESSAGE = "Olá! Gostaria de saber mais sobre a Misturêra.";
 
 const howItWorksSteps = [
@@ -31,17 +31,17 @@ const featuredFlavors = [
 const units = [
   {
     name: "Misturêra Santa Cruz da Serra",
-    address: "Rua Rio Grande do Norte, nº 8, Santa Cruz da Serra, Duque de Caxias – RJ",
+    address: "R. Rio Grande do Norte, Nº 8 - Loja B, Santa Cruz da Serra, Duque de Caxias – RJ, 25260-030",
     hours: "Seg-Qui: 13h às 22h · Sex-Dom: 13h às 23h",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com/?q=Rua+Rio+Grande+do+Norte+8+Santa+Cruz+da+Serra+Duque+de+Caxias+RJ",
+    mapUrl: "https://maps.google.com/?q=R.+Rio+Grande+do+Norte+8+loja+b+Santa+Cruz+da+Serra+Duque+de+Caxias+RJ+25260-030",
   },
   {
     name: "Misturêra Xerém",
-    address: "Rua Pastor Manoel Avelino de Souza, nº 15, Mantiqueira, Xerém, Duque de Caxias – RJ",
+    address: "R. Pastor Manoel Avelino de Souza, Nº 15, Mantiquira, Duque de Caxias – RJ, 25250-406",
     hours: "Seg-Qui: 13h às 22h · Sex-Dom: 13h às 23h",
     whatsapp: WHATSAPP_NUMBER,
-    mapUrl: "https://maps.google.com/?q=Rua+Pastor+Manoel+Avelino+de+Souza+15+Xerém+Duque+de+Caxias+RJ",
+    mapUrl: "https://maps.google.com/?q=R.+Pastor+Manoel+Avelino+de+Souza+15+Mantiquira+Duque+de+Caxias+RJ+25250-406",
   },
 ];
 

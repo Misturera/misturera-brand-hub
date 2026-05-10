@@ -10,6 +10,7 @@ import Unidades from "./pages/Unidades.tsx";
 import Sabores from "./pages/Sabores.tsx";
 import ComoFunciona from "./pages/ComoFunciona.tsx";
 import Avalie from "./pages/Avalie.tsx";
+import ClubePage from "./pages/ClubePage.tsx";
 import Contato from "./pages/Contato.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/sabores" element={<Sabores />} />
           <Route path="/como-funciona" element={<ComoFunciona />} />
           <Route path="/avalie" element={<Avalie />} />
+          <Route path="/clube" element={<ClubePage />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

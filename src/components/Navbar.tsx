@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Sabores", path: "/sabores" },
   { label: "Como Funciona", path: "/como-funciona" },
   { label: "Avalie", path: "/avalie" },
+  { label: "Clube", path: "/clube" },
   { label: "Contato", path: "/contato" },
 ];
 

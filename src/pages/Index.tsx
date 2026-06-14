@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import fachadaSantaCruz from "@/assets/unidade-santa-cruz-fachada.jpg";
 import interiorSantaCruz from "@/assets/unidade-santa-cruz-interior.jpg";
-import gelatosImg from "@/assets/gelatos-cubas.jpg";
 import xeremToppings from "@/assets/unidade-xerem-toppings.jpg";
 import xeremEquipe from "@/assets/unidade-xerem-equipe.jpg";
 import imgPistache from "@/assets/sabores/pistache.jpg";

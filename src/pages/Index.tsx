@@ -61,8 +61,6 @@ export default function Index() {
     <Layout>
       {/* Hero */}
       <section className="relative bg-primary overflow-hidden">
-        <img src={gelatosImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0 bg-primary/90" />
         <div className="container relative py-24 md:py-36 lg:py-44">
           <div className="max-w-3xl">
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight">

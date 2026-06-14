@@ -6,15 +6,15 @@
   :root {
     /* Misturêra Brand Palette */
     --background: 40 33% 94%; /* Off-white Cremoso #F5F1E8 */
-    --foreground: 153 50% 11%; /* Verde Floresta #1E3D2F */
+    --foreground: 153 34% 18%; /* Verde Floresta #1E3D2F */
 
     --card: 37 25% 85%; /* Bege Areia #E7DDCC */
-    --card-foreground: 153 50% 11%;
+    --card-foreground: 153 34% 18%;
 
     --popover: 40 33% 94%;
-    --popover-foreground: 153 50% 11%;
+    --popover-foreground: 153 34% 18%;
 
-    --primary: 153 50% 11%; /* Verde Floresta Profundo #1E3D2F */
+    --primary: 153 34% 18%; /* Verde Floresta Profundo #1E3D2F */
     --primary-foreground: 43 33% 97%; /* Branco Quente #FCFBF7 */
 
     --secondary: 160 24% 27%; /* Verde Musgo #35574D */
@@ -24,14 +24,14 @@
     --muted-foreground: 160 15% 40%;
 
     --accent: 37 25% 85%;
-    --accent-foreground: 153 50% 11%;
+    --accent-foreground: 153 34% 18%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 43 33% 97%;
 
     --border: 37 20% 80%;
     --input: 37 20% 80%;
-    --ring: 153 50% 11%;
+    --ring: 153 34% 18%;
 
     --radius: 0.5rem;
 
@@ -39,13 +39,13 @@
     --cream: 40 33% 94%;
     --sand: 37 25% 85%;
     --warm-white: 43 33% 97%;
-    --forest: 153 50% 11%;
+    --forest: 153 34% 18%;
     --moss: 160 24% 27%;
 
-    --sidebar-background: 153 50% 11%;
+    --sidebar-background: 153 34% 18%;
     --sidebar-foreground: 43 33% 97%;
     --sidebar-primary: 43 33% 97%;
-    --sidebar-primary-foreground: 153 50% 11%;
+    --sidebar-primary-foreground: 153 34% 18%;
     --sidebar-accent: 160 24% 27%;
     --sidebar-accent-foreground: 43 33% 97%;
     --sidebar-border: 160 24% 27%;
@@ -60,7 +60,7 @@
     --popover: 162 30% 10%;
     --popover-foreground: 43 33% 97%;
     --primary: 43 33% 97%;
-    --primary-foreground: 153 50% 11%;
+    --primary-foreground: 153 34% 18%;
     --secondary: 160 24% 27%;
     --secondary-foreground: 43 33% 97%;
     --muted: 160 20% 20%;

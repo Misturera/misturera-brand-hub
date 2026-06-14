@@ -26,7 +26,7 @@ export function Navbar() {
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary backdrop-blur-sm">
       <div className="container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center">
           <img src={logoHorizontal} alt="Misturêra" className="h-8 md:h-10 w-auto" />

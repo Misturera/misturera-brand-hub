@@ -1,106 +1,104 @@
 import { Link } from "react-router-dom";
-import { MapPin, Clock, MessageCircle, Instagram } from "lucide-react";
 import logoHorizontal from "@/assets/logo-horizontal-branco.png";
+import { IcPin, IcRelogio, IcWpp, IcInstagram } from "@/components/icons";
+import { lojas, HORARIO_DETALHADO } from "@/data/lojas";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, urlWpp } from "@/data/site";
 
-const WHATSAPP_NUMBER = "5521976114309";
+const navLinks = [
+  { label: "Quem somos", to: "/quem-somos" },
+  { label: "Nossa história", to: "/nossa-historia" },
+  { label: "Sabores", to: "/sabores" },
+  { label: "Como funciona", to: "/como-funciona" },
+  { label: "Unidades", to: "/unidades" },
+  { label: "Avalie", to: "/avalie" },
+  { label: "Clube", to: "/clube" },
+];
+
+function enderecoCurto(endereco: string) {
+  return endereco.split(",").slice(0, 2).join(",").trim();
+}
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="space-y-4">
-            <img src={logoHorizontal} alt="Misturêra" className="h-8 w-auto" />
-            <p className="text-primary-foreground/70 text-sm font-sans leading-relaxed">
-              Gelato e açaí self-service com produção própria. Sabor de verdade e experiência feita para surpreender.
+    <footer className="rodape">
+      <div className="wrap">
+        <div className="rodape-in">
+          <div>
+            <Link to="/" className="logo-link" aria-label="Misturêra">
+              <img className="logo-img" src={logoHorizontal} alt="Misturêra" style={{ height: 32 }} />
+            </Link>
+            <p className="rodape-sobre">
+              Gelato e açaí self-service com produção própria. Sabor de verdade e experiência feita
+              para surpreender.
             </p>
           </div>
 
-          {/* Links rápidos */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold">Navegação</h4>
-            <div className="flex flex-col gap-2">
-              {[
-                { label: "Quem Somos", path: "/quem-somos" },
-                { label: "Nossa História", path: "/nossa-historia" },
-                { label: "Unidades", path: "/unidades" },
-                { label: "Sabores", path: "/sabores" },
-                { label: "Como Funciona", path: "/como-funciona" },
-                { label: "Avalie", path: "/avalie" },
-              ].map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className="text-primary-foreground/70 hover:text-primary-foreground text-sm font-sans transition-colors"
-                >
-                  {link.label}
-                </Link>
+          <div>
+            <h4>Navegação</h4>
+            <ul>
+              {navLinks.map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to}>{l.label}</Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Unidades */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold">Unidades</h4>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-0.5 text-primary-foreground/60 shrink-0" />
-                <div>
-                  <p className="text-sm font-sans font-medium">Santa Cruz da Serra</p>
-                  <p className="text-xs font-sans text-primary-foreground/60">R. Rio Grande do Norte, Nº 8 - Loja B</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-0.5 text-primary-foreground/60 shrink-0" />
-                <div>
-                  <p className="text-sm font-sans font-medium">Xerém</p>
-                  <p className="text-xs font-sans text-primary-foreground/60">R. Pastor Manoel Avelino de Souza, Nº 15</p>
-                </div>
-              </div>
-            </div>
+          <div>
+            <h4>Unidades</h4>
+            <ul>
+              {lojas.map((loja) => (
+                <li key={loja.id} className="ritem">
+                  <IcPin />
+                  <span>
+                    <b>{loja.nome}</b>
+                    {enderecoCurto(loja.endereco)}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Contato */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-lg font-semibold">Contato</h4>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2">
-                <Clock className="w-4 h-4 text-primary-foreground/60 mt-0.5" />
-                <div>
-                  <span className="text-sm font-sans text-primary-foreground/70 block">Seg-Qui: 13h às 22h</span>
-                  <span className="text-sm font-sans text-primary-foreground/70 block">Sex-Dom: 13h às 23h</span>
-                </div>
-              </div>
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span className="text-sm font-sans">WhatsApp</span>
-              </a>
-              <a
-                href="https://instagram.com/misturera"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-              >
-                <Instagram className="w-4 h-4" />
-                <span className="text-sm font-sans">@misturera</span>
-              </a>
-            </div>
+          <div>
+            <h4>Contato</h4>
+            <ul>
+              <li className="ritem">
+                <IcRelogio />
+                <span>
+                  {HORARIO_DETALHADO.map((h, i) => (
+                    <span key={i} style={{ display: "block" }}>
+                      {h.dias === "Segunda a Quinta" ? "Seg–Qui" : "Sex–Dom"}: {h.horas}
+                    </span>
+                  ))}
+                </span>
+              </li>
+              {lojas
+                .filter((l) => l.whatsapp)
+                .map((loja) => (
+                  <li key={loja.id}>
+                    <a href={urlWpp(loja.whatsapp)!} target="_blank" rel="noopener noreferrer" className="ritem">
+                      <IcWpp />
+                      <span>
+                        {loja.telefoneExibicao} · {loja.nome}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              <li>
+                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="ritem">
+                  <IcInstagram />
+                  <span>{INSTAGRAM_HANDLE}</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="border-t border-secondary mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-sans text-primary-foreground/50">
-            © {new Date().getFullYear()} Misturêra. Todos os direitos reservados.
-          </p>
-          <Link to="/privacidade" className="text-xs font-sans text-primary-foreground/50 hover:text-primary-foreground/70 transition-colors">
-            Política de Privacidade
-          </Link>
+        <div className="rodape-base">
+          <span>© {new Date().getFullYear()} Misturêra. Todos os direitos reservados.</span>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+            {INSTAGRAM_HANDLE}
+          </a>
         </div>
       </div>
     </footer>

@@ -49,7 +49,7 @@ export default function ClubePage() {
       );
       const data = await response.json();
       if (Array.isArray(data) && data[0]?.token) {
-        window.location.href = `https://mistureracheck.com/cliente/${data[0].token}`;
+        window.location.href = `https://clube.misturera.com/cliente/${data[0].token}`;
       } else {
         setError("CPF não encontrado. Cadastre-se em uma de nossas unidades ou pelo link abaixo.");
       }
@@ -99,10 +99,7 @@ export default function ClubePage() {
             <div className="clube-txt">
               <p className="eyebrow-d">Acessar meus pontos</p>
               <h2>Consulte seu saldo pelo CPF</h2>
-              <p>
-                Digite seu CPF para ver seu saldo e histórico. Você é levado ao seu cartão na
-                MistureraCheck.
-              </p>
+              <p>Digite seu CPF para ver seu saldo e histórico.</p>
               <div style={{ marginTop: 20, maxWidth: 360, display: "flex", gap: 10 }}>
                 <input
                   className="campo"

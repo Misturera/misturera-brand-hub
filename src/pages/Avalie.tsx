@@ -1,142 +1,107 @@
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
-import { SectionHeading } from "@/components/SectionHeading";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Star, Send } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { PageHero } from "@/components/PageHero";
+import { IcEstrela, IcCheck } from "@/components/icons";
+import { lojas } from "@/data/lojas";
 
-const units = [
-  { id: "santa-cruz", name: "Misturêra Santa Cruz da Serra" },
-  { id: "xerem", name: "Misturêra Xerém" },
+const criterios = [
+  { id: "atendimento", label: "Atendimento" },
+  { id: "limpeza", label: "Limpeza" },
+  { id: "organizacao", label: "Organização" },
+  { id: "ambiente", label: "Ambiente" },
+  { id: "qualidade", label: "Qualidade dos produtos" },
+  { id: "experiencia", label: "Experiência geral" },
 ];
-
-const criteria = [
-  { key: "atendimento", label: "Atendimento" },
-  { key: "limpeza", label: "Limpeza" },
-  { key: "organizacao", label: "Organização" },
-  { key: "ambiente", label: "Ambiente" },
-  { key: "qualidade", label: "Qualidade dos produtos" },
-  { key: "experiencia", label: "Experiência geral" },
-];
-
-function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
-  return (
-    <div className="flex gap-1">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <button
-          key={star}
-          type="button"
-          onClick={() => onChange(star)}
-          className="p-0.5 transition-colors"
-          aria-label={`${star} estrelas`}
-        >
-          <Star
-            className={`w-6 h-6 ${star <= value ? "text-amber-500 fill-amber-500" : "text-border"}`}
-          />
-        </button>
-      ))}
-    </div>
-  );
-}
 
 export default function Avalie() {
-  const { toast } = useToast();
-  const [selectedUnit, setSelectedUnit] = useState("");
-  const [ratings, setRatings] = useState<Record<string, number>>({});
-  const [comment, setComment] = useState("");
+  const [unidade, setUnidade] = useState<string | null>(null);
+  const [notas, setNotas] = useState<Record<string, number>>({});
+  const [comentario, setComentario] = useState("");
+  const [enviado, setEnviado] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const setNota = (crit: string, n: number) => setNotas((p) => ({ ...p, [crit]: n }));
 
-    if (!selectedUnit) {
-      toast({ title: "Selecione uma unidade", variant: "destructive" });
-      return;
-    }
-
-    const missingRatings = criteria.filter((c) => !ratings[c.key]);
-    if (missingRatings.length > 0) {
-      toast({ title: "Avalie todos os critérios", variant: "destructive" });
-      return;
-    }
-
-    toast({ title: "Obrigado pela sua avaliação!", description: "Sua opinião é muito importante para nós." });
-    setSelectedUnit("");
-    setRatings({});
-    setComment("");
+  const enviar = () => {
+    // TODO(backend): persistir a avaliação. Nenhuma tabela definida no escopo
+    // "apresentação"; integrar quando o backend estiver disponível.
+    // Payload pronto: { unidade, notas, comentario }
+    setEnviado(true);
   };
 
   return (
     <Layout>
-      <section className="bg-primary py-20 md:py-28">
-        <div className="container">
-          <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-              Avalie sua experiência
-            </h1>
-            <p className="font-sans text-lg text-primary-foreground/70 leading-relaxed">
-              Sua opinião nos ajuda a melhorar cada detalhe. Conte como foi sua visita.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Avalie sua experiência"
+        titulo="Sua opinião nos ajuda a melhorar"
+        texto="Conte como foi sua visita — cada detalhe importa."
+      />
 
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container max-w-2xl">
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div>
-              <SectionHeading title="Qual unidade você visitou?" className="mb-6" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {units.map((unit) => (
-                  <button
-                    key={unit.id}
-                    type="button"
-                    onClick={() => setSelectedUnit(unit.id)}
-                    className={`p-4 rounded-lg border-2 font-sans text-sm font-medium transition-all ${
-                      selectedUnit === unit.id
-                        ? "border-primary bg-primary/5 text-foreground"
-                        : "border-border bg-warm-white text-muted-foreground hover:border-primary/30"
-                    }`}
-                  >
-                    {unit.name}
-                  </button>
-                ))}
+      <section className="sec">
+        <div className="wrap">
+          <div className="form-card">
+            {enviado ? (
+              <div className="ok-box">
+                <IcCheck />
+                <h3>Avaliação enviada!</h3>
+                <p>Obrigado por compartilhar sua experiência com a gente.</p>
               </div>
-            </div>
-
-            {selectedUnit && (
-              <div className="space-y-5 animate-fade-in">
-                <SectionHeading title="Como foi sua experiência?" className="mb-6" />
-                {criteria.map((c) => (
-                  <div key={c.key} className="flex items-center justify-between bg-warm-white rounded-lg p-4">
-                    <span className="font-sans text-sm font-medium text-foreground">{c.label}</span>
-                    <StarRating
-                      value={ratings[c.key] || 0}
-                      onChange={(v) => setRatings((prev) => ({ ...prev, [c.key]: v }))}
-                    />
-                  </div>
-                ))}
-
-                <div>
-                  <label className="font-sans text-sm font-medium text-foreground block mb-2">
-                    Deixe um comentário (opcional)
-                  </label>
-                  <Textarea
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    placeholder="Conte mais sobre sua experiência..."
-                    className="bg-warm-white font-sans"
-                    maxLength={500}
-                  />
+            ) : (
+              <>
+                <p className="campo-label">Qual unidade você visitou?</p>
+                <div className="opcoes" style={{ marginBottom: 22 }}>
+                  {lojas.map((l) => (
+                    <button
+                      key={l.id}
+                      className={`opcao${unidade === l.id ? " on" : ""}`}
+                      onClick={() => setUnidade(l.id)}
+                    >
+                      {l.nome}
+                    </button>
+                  ))}
                 </div>
 
-                <Button type="submit" size="lg" className="w-full font-sans text-base">
-                  <Send className="w-5 h-5 mr-2" />
-                  Enviar avaliação
-                </Button>
-              </div>
+                {unidade && (
+                  <div>
+                    <p className="campo-label">Como foi sua experiência?</p>
+                    {criterios.map((c) => (
+                      <div className="criterio" key={c.id}>
+                        <span>{c.label}</span>
+                        <div className="estrelas">
+                          {[1, 2, 3, 4, 5].map((n) => (
+                            <button
+                              key={n}
+                              className={`estrela${(notas[c.id] || 0) >= n ? " on" : ""}`}
+                              aria-label={`${n} ${n === 1 ? "estrela" : "estrelas"}`}
+                              onClick={() => setNota(c.id, n)}
+                            >
+                              <IcEstrela />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="grupo" style={{ marginTop: 16 }}>
+                      <label className="campo-label" htmlFor="aval-com">
+                        Comentário (opcional)
+                      </label>
+                      <textarea
+                        className="campo"
+                        id="aval-com"
+                        placeholder="Conte mais sobre sua experiência..."
+                        value={comentario}
+                        onChange={(e) => setComentario(e.target.value)}
+                      />
+                    </div>
+
+                    <button className="btn btn-verde btn-cheio" onClick={enviar}>
+                      Enviar avaliação
+                    </button>
+                  </div>
+                )}
+              </>
             )}
-          </form>
+          </div>
         </div>
       </section>
     </Layout>

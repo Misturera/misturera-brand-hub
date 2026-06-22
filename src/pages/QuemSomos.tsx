@@ -1,98 +1,86 @@
 import { Layout } from "@/components/Layout";
-import { SectionHeading } from "@/components/SectionHeading";
-import { Card, CardContent } from "@/components/ui/card";
-import { Leaf, Heart, ShieldCheck, Users, Sparkles, Award } from "lucide-react";
-import fundadorImg from "@/assets/fundador-gelatiere.jpg";
-import xeremInterior from "@/assets/unidade-xerem-interior.jpg";
+import { PageHero } from "@/components/PageHero";
+import { Faixa } from "@/components/Faixa";
+import {
+  IcFolha,
+  IcCoracao,
+  IcEscudo,
+  IcPessoas,
+  IcSparkles,
+  IcMedalha,
+} from "@/components/icons";
+import { valores, type IconeValor } from "@/data/valores";
+import fundador from "@/assets/fundador-gelatiere.jpg";
 
-const values = [
-  { icon: Leaf, title: "Produção Própria", desc: "Desenvolvemos nossos sabores com ingredientes selecionados e processos artesanais controlados." },
-  { icon: Heart, title: "Paixão pelo Sabor", desc: "Cada receita é criada com dedicação para oferecer o melhor gelato e açaí da região." },
-  { icon: ShieldCheck, title: "Qualidade Garantida", desc: "Padrão rigoroso em cada etapa, da seleção dos insumos até o momento que chega a você." },
-  { icon: Users, title: "Experiência Humanizada", desc: "Atendimento acolhedor, ambiente cuidado e atenção aos detalhes que fazem a diferença." },
-  { icon: Sparkles, title: "Inovação Constante", desc: "Novos sabores, combinações e experiências para surpreender a cada visita." },
-  { icon: Award, title: "Padrão Premium", desc: "Artesanal com excelência. Cada detalhe reflete nosso compromisso com o melhor." },
-];
+const iconesValor: Record<IconeValor, (p: { className?: string }) => JSX.Element> = {
+  folha: IcFolha,
+  coracao: IcCoracao,
+  escudo: IcEscudo,
+  pessoas: IcPessoas,
+  sparkles: IcSparkles,
+  medalha: IcMedalha,
+};
 
 export default function QuemSomos() {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="bg-primary py-20 md:py-28">
-        <div className="container">
-          <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-              Quem nós somos
-            </h1>
-            <p className="font-sans text-lg text-primary-foreground/70 leading-relaxed">
-              Mais do que uma gelateria. Somos uma marca que acredita que sabor, qualidade e experiência andam juntos.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Quem nós somos"
+        titulo="Mais do que uma gelateria"
+        texto="Somos uma marca que acredita que sabor, qualidade e experiência andam juntos."
+      />
 
-      {/* Propósito */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="rounded-lg overflow-hidden aspect-[4/3]">
-              <img src={fundadorImg} alt="Fundador da Misturêra — produção artesanal própria" className="w-full h-full object-cover" loading="lazy" />
+      <section className="sec">
+        <div className="wrap">
+          <div className="dois">
+            <div className="dois-foto">
+              <img src={fundador} alt="Fundador da Misturêra — produção artesanal própria" loading="lazy" />
             </div>
-            <div>
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Nosso propósito
-              </h2>
-              <p className="font-sans text-muted-foreground leading-relaxed mb-4">
-                A Misturêra é uma gelateria e açaíteria self-service com produção própria, criada para oferecer sabor de verdade, liberdade de escolha e uma experiência premium sem excessos.
+            <div className="dois-txt">
+              <p className="eyebrow-d">Nosso propósito</p>
+              <h2>Sabor de verdade, sem excessos</h2>
+              <p>
+                A Misturêra é uma gelateria e açaíteria self-service com produção própria, criada para
+                oferecer sabor de verdade, liberdade de escolha e uma experiência premium sem excessos.
               </p>
-              <p className="font-sans text-muted-foreground leading-relaxed">
-                Nossa marca nasceu da vontade de empreender, evoluiu no desafio e se fortaleceu na prática. Hoje, unimos produto artesanal, ambiente acolhedor e cuidado real em cada detalhe para transformar momentos simples em experiências memoráveis.
+              <p>
+                Nossa marca nasceu da vontade de empreender, evoluiu no desafio e se fortaleceu na
+                prática. Hoje, unimos produto artesanal, ambiente acolhedor e cuidado real em cada
+                detalhe para transformar momentos simples em experiências memoráveis.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Valores */}
-      <section className="py-16 md:py-24 bg-muted/50">
-        <div className="container">
-          <SectionHeading
-            title="O que nos move"
-            subtitle="Nossos pilares de marca guiam cada decisão, do sabor ao atendimento."
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {values.map((v, i) => (
-              <Card key={i} className="border-0 shadow-sm bg-warm-white">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <v.icon className="w-6 h-6 text-primary" />
+      <section className="sec alt">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow-d">O que nos move</p>
+            <h2>Nossos pilares de marca</h2>
+            <p>Guiam cada decisão, do sabor ao atendimento.</p>
+          </div>
+          <div className="cards3">
+            {valores.map((v) => {
+              const Icone = iconesValor[v.icone];
+              return (
+                <div className="card-v" key={v.titulo}>
+                  <div className="ico">
+                    <Icone />
                   </div>
-                  <h3 className="font-serif text-lg font-semibold text-foreground mb-2">{v.title}</h3>
-                  <p className="font-sans text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
+                  <h3>{v.titulo}</h3>
+                  <p>{v.texto}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Proposta de Valor */}
-      <section className="py-16 md:py-24 bg-primary">
-        <div className="container max-w-3xl text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
-            Artesanal com padrão profissional
-          </h2>
-          <p className="font-sans text-primary-foreground/70 text-lg leading-relaxed mb-4">
-            Não escolhemos entre ser artesanal ou profissional. Somos os dois.
-            Nossa produção é feita com as mãos, mas com processos que garantem
-            consistência, segurança e sabor impecável em cada porção servida.
-          </p>
-          <p className="font-sans text-primary-foreground/70 text-lg leading-relaxed">
-            Do fornecedor ao freezer, tudo é planejado. Do freezer à sua colher,
-            tudo é cuidado. Esse é o nosso padrão Misturêra.
-          </p>
-        </div>
-      </section>
+      <Faixa
+        titulo="Artesanal com padrão profissional"
+        texto="Não escolhemos entre ser artesanal ou profissional — somos os dois. Nossa produção é feita com as mãos, mas com processos que garantem consistência, segurança e sabor impecável em cada porção. Do fornecedor ao freezer, tudo é planejado. Do freezer à sua colher, tudo é cuidado."
+      />
     </Layout>
   );
 }

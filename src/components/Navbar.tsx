@@ -1,97 +1,71 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, MessageCircle } from "lucide-react";
 import logoHorizontal from "@/assets/logo-horizontal-branco.png";
-import { Button } from "@/components/ui/button";
+import { IcMenu, IcWpp } from "@/components/icons";
+import { WPP_GERAL } from "@/data/site";
 
 const navLinks = [
-  { label: "Início", path: "/" },
-  { label: "Quem Somos", path: "/quem-somos" },
-  { label: "Nossa História", path: "/nossa-historia" },
-  { label: "Unidades", path: "/unidades" },
-  { label: "Sabores", path: "/sabores" },
-  { label: "Como Funciona", path: "/como-funciona" },
-  { label: "Avalie", path: "/avalie" },
-  { label: "Clube", path: "/clube" },
-  { label: "Contato", path: "/contato" },
+  { label: "Início", to: "/" },
+  { label: "Quem somos", to: "/quem-somos" },
+  { label: "Nossa história", to: "/nossa-historia" },
+  { label: "Sabores", to: "/sabores" },
+  { label: "Como funciona", to: "/como-funciona" },
+  { label: "Unidades", to: "/unidades" },
+  { label: "Avalie", to: "/avalie" },
+  { label: "Clube", to: "/clube" },
+  { label: "Contato", to: "/contato" },
 ];
 
-const WHATSAPP_NUMBER = "5521976114309";
-const WHATSAPP_MESSAGE = "Olá! Gostaria de saber mais sobre a Misturêra.";
-
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const [aberto, setAberto] = useState(false);
+  const { pathname } = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary backdrop-blur-sm">
-      <div className="container flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center">
-          <img src={logoHorizontal} alt="Misturêra" className="h-8 md:h-10 w-auto" />
+    <header className="header">
+      <div className="wrap header-in">
+        <Link to="/" className="logo-link" aria-label="Misturêra">
+          <img className="logo-img" src={logoHorizontal} alt="Misturêra" />
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`px-3 py-2 text-sm font-sans transition-colors rounded-md ${
-                location.pathname === link.path
-                  ? "text-primary-foreground bg-secondary"
-                  : "text-primary-foreground/80 hover:text-primary-foreground hover:bg-secondary/50"
-              }`}
-            >
-              {link.label}
+        <nav className="nav" aria-label="Navegação principal">
+          {navLinks.map((l) => (
+            <Link key={l.to} to={l.to} className={pathname === l.to ? "ativa" : ""}>
+              {l.label}
             </Link>
           ))}
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-            <Button size="sm" className="ml-3 bg-green-600 hover:bg-green-700 text-primary-foreground font-sans">
-              <MessageCircle className="w-4 h-4 mr-1" />
-              WhatsApp
-            </Button>
-          </a>
-        </div>
+          <Link className="btn btn-wpp btn-sm" to={WPP_GERAL}>
+            WhatsApp
+          </Link>
+        </nav>
 
-        {/* Mobile menu button */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden text-primary-foreground p-2"
-          aria-label="Menu"
+          className="menu-btn"
+          aria-label="Abrir menu"
+          aria-expanded={aberto}
+          onClick={() => setAberto((v) => !v)}
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <IcMenu />
         </button>
       </div>
 
-      {/* Mobile nav */}
-      {isOpen && (
-        <div className="lg:hidden bg-primary border-t border-secondary pb-4">
-          <div className="container flex flex-col gap-1 pt-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`px-4 py-3 text-sm font-sans rounded-md transition-colors ${
-                  location.pathname === link.path
-                    ? "text-primary-foreground bg-secondary"
-                    : "text-primary-foreground/80 hover:text-primary-foreground hover:bg-secondary/50"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="mt-2 px-4">
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-primary-foreground font-sans">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Falar no WhatsApp
-              </Button>
-            </a>
-          </div>
+      <div className={`mob-menu${aberto ? " aberto" : ""}`}>
+        <div className="wrap">
+          {navLinks.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className={pathname === l.to ? "ativa" : ""}
+              onClick={() => setAberto(false)}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link className="btn btn-wpp" to={WPP_GERAL} onClick={() => setAberto(false)}>
+            <IcWpp />
+            Falar no WhatsApp
+          </Link>
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   );
 }

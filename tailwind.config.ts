@@ -64,8 +64,8 @@ export default {
         },
       },
       fontFamily: {
-        serif: ["'Playfair Display'", "Georgia", "serif"],
-        sans: ["'Inter'", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["'Fraunces'", "Georgia", "serif"],
+        sans: ["'Outfit'", "system-ui", "-apple-system", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

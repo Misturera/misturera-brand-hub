@@ -1,151 +1,152 @@
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Send } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { PageHero } from "@/components/PageHero";
+import { Toast } from "@/components/Toast";
+import { IcPin, IcTelefone, IcRelogio, IcWpp } from "@/components/icons";
+import { lojas, HORARIO_RESUMO } from "@/data/lojas";
+import { urlWpp } from "@/data/site";
 
-const WHATSAPP_NUMBER = "5521976114309";
-
-const contactCategories = [
-  { id: "duvida", label: "Dúvida", emoji: "❓" },
-  { id: "sugestao", label: "Sugestão", emoji: "💡" },
-  { id: "reclamacao", label: "Reclamação", emoji: "📝" },
-  { id: "elogio", label: "Elogio", emoji: "💚" },
+const assuntos = [
+  { id: "duvida", label: "❓ Dúvida" },
+  { id: "sugestao", label: "💡 Sugestão" },
+  { id: "reclamacao", label: "📝 Reclamação" },
+  { id: "elogio", label: "💚 Elogio" },
 ];
 
 export default function Contato() {
-  const { toast } = useToast();
-  const [category, setCategory] = useState("");
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
+  const [assunto, setAssunto] = useState<string | null>(null);
+  const [nome, setNome] = useState("");
+  const [msg, setMsg] = useState("");
+  const [toast, setToast] = useState(false);
 
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de falar com o Gelatiere da Misturêra.")}`;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!category || !name.trim() || !message.trim()) {
-      toast({ title: "Preencha todos os campos", variant: "destructive" });
-      return;
-    }
-    toast({ title: "Mensagem enviada!", description: "Retornaremos o mais breve possível." });
-    setCategory("");
-    setName("");
-    setMessage("");
+  const enviar = () => {
+    // TODO(backend): integrar envio da mensagem. Sem backend definido no
+    // escopo "apresentação". Payload: { assunto, nome, msg }
+    setToast(true);
+    setTimeout(() => setToast(false), 2800);
   };
 
   return (
     <Layout>
-      <section className="bg-primary py-20 md:py-28">
-        <div className="container">
-          <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-              Fale com o Gelatiere
-            </h1>
-            <p className="font-sans text-lg text-primary-foreground/70 leading-relaxed">
-              Tem algo para nos contar? Queremos ouvir você. Por trás de cada sabor existe alguém que se importa de verdade.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Fale com o Gelatiere"
+        titulo="Queremos ouvir você"
+        texto="Por trás de cada sabor existe alguém que se importa de verdade."
+      />
 
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container max-w-4xl">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* WhatsApp CTA */}
+      <section className="sec" id="lojas">
+        <div className="wrap">
+          <div className="contato-grid">
             <div>
-              <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
-                Fale direto no WhatsApp
-              </h2>
-              <p className="font-sans text-muted-foreground leading-relaxed mb-6">
-                Precisa de uma resposta rápida? Nosso canal de WhatsApp é o jeito mais direto
-                de falar com a gente. Estamos prontos para ouvir, ajudar e conversar.
-              </p>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="w-full sm:w-auto font-sans text-base bg-secondary hover:bg-secondary/90">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Abrir WhatsApp
-                </Button>
-              </a>
-
-              <div className="mt-10 p-6 bg-muted/50 rounded-lg">
-                <h3 className="font-serif text-lg font-semibold text-foreground mb-3">
-                  Por que falar com a gente?
-                </h3>
-                <ul className="space-y-2 font-sans text-sm text-muted-foreground">
-                  <li>• Sugestão de sabor? Queremos ouvir.</li>
-                  <li>• Algo não saiu como esperado? Vamos resolver.</li>
-                  <li>• Quer elogiar? Fazemos questão de agradecer.</li>
-                  <li>• Dúvida sobre horário, localização ou cardápio? É só perguntar.</li>
+              <div className="sec-head esq" style={{ marginBottom: 22 }}>
+                <p className="eyebrow-d">WhatsApp das lojas</p>
+                <h2 style={{ fontSize: 26 }}>Fale direto com a unidade</h2>
+              </div>
+              <div className="lojas">
+                {lojas.map((l) => {
+                  const wpp = urlWpp(l.whatsapp);
+                  return (
+                    <div className="loja" key={l.id}>
+                      <h3>{l.nomeCompleto}</h3>
+                      <div className="ulinha">
+                        <IcPin />
+                        <span>{l.endereco}</span>
+                      </div>
+                      <div className="ulinha">
+                        <IcTelefone />
+                        {wpp ? (
+                          <a href={wpp} target="_blank" rel="noopener noreferrer">
+                            {l.telefoneExibicao}
+                          </a>
+                        ) : (
+                          <span>WhatsApp em breve</span>
+                        )}
+                      </div>
+                      <div className="ulinha">
+                        <IcRelogio />
+                        <span>{HORARIO_RESUMO}</span>
+                      </div>
+                      <div className="uacoes">
+                        {wpp && (
+                          <a className="btn btn-wpp btn-sm" href={wpp} target="_blank" rel="noopener noreferrer">
+                            <IcWpp />
+                            Chamar no WhatsApp
+                          </a>
+                        )}
+                        <a className="btn btn-linha btn-sm" href={l.mapa} target="_blank" rel="noopener noreferrer">
+                          <IcPin />
+                          Como chegar
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="porque">
+                <h3>Por que falar com a gente?</h3>
+                <ul>
+                  <li>Sugestão de sabor? Queremos ouvir.</li>
+                  <li>Algo não saiu como esperado? Vamos resolver.</li>
+                  <li>Quer elogiar? Fazemos questão de agradecer.</li>
+                  <li>Dúvida sobre horário, localização ou cardápio? É só perguntar.</li>
                 </ul>
               </div>
             </div>
 
-            {/* Formulário */}
             <div>
-              <h2 className="font-serif text-2xl font-bold text-foreground mb-4">
-                Ou envie uma mensagem
-              </h2>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <label className="font-sans text-sm font-medium text-foreground block mb-2">
-                    Tipo de contato
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
-                    {contactCategories.map((cat) => (
+              <div className="sec-head esq" style={{ marginBottom: 22 }}>
+                <p className="eyebrow-d">Ou envie uma mensagem</p>
+                <h2 style={{ fontSize: 26 }}>Deixe seu recado</h2>
+              </div>
+              <div className="form-card">
+                <div className="grupo">
+                  <label className="campo-label">Assunto</label>
+                  <div className="opcoes">
+                    {assuntos.map((a) => (
                       <button
-                        key={cat.id}
-                        type="button"
-                        onClick={() => setCategory(cat.id)}
-                        className={`p-3 rounded-lg border-2 font-sans text-sm font-medium transition-all flex items-center gap-2 ${
-                          category === cat.id
-                            ? "border-primary bg-primary/5 text-foreground"
-                            : "border-border bg-warm-white text-muted-foreground hover:border-primary/30"
-                        }`}
+                        key={a.id}
+                        className={`opcao${assunto === a.id ? " on" : ""}`}
+                        onClick={() => setAssunto(a.id)}
                       >
-                        <span>{cat.emoji}</span>
-                        {cat.label}
+                        {a.label}
                       </button>
                     ))}
                   </div>
                 </div>
-
-                <div>
-                  <label className="font-sans text-sm font-medium text-foreground block mb-2">
+                <div className="grupo">
+                  <label className="campo-label" htmlFor="c-nome">
                     Seu nome
                   </label>
-                  <Input
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                  <input
+                    className="campo"
+                    id="c-nome"
                     placeholder="Como podemos te chamar?"
-                    className="bg-warm-white font-sans"
-                    maxLength={100}
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
                   />
                 </div>
-
-                <div>
-                  <label className="font-sans text-sm font-medium text-foreground block mb-2">
+                <div className="grupo">
+                  <label className="campo-label" htmlFor="c-msg">
                     Sua mensagem
                   </label>
-                  <Textarea
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                  <textarea
+                    className="campo"
+                    id="c-msg"
                     placeholder="Escreva aqui..."
-                    className="bg-warm-white font-sans min-h-[120px]"
-                    maxLength={1000}
+                    value={msg}
+                    onChange={(e) => setMsg(e.target.value)}
                   />
                 </div>
-
-                <Button type="submit" size="lg" className="w-full font-sans text-base">
-                  <Send className="w-5 h-5 mr-2" />
+                <button className="btn btn-verde btn-cheio" onClick={enviar}>
                   Enviar mensagem
-                </Button>
-              </form>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      <Toast mensagem="Mensagem registrada! Em breve entraremos em contato." visivel={toast} />
     </Layout>
   );
 }

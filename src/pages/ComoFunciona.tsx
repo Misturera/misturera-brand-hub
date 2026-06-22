@@ -1,38 +1,19 @@
 import { Layout } from "@/components/Layout";
-import { SectionHeading } from "@/components/SectionHeading";
-import { Card, CardContent } from "@/components/ui/card";
-import { CupSoda, IceCream, Sparkles, Scale, Heart } from "lucide-react";
-import toppingsImg from "@/assets/unidade-xerem-toppings.jpg";
+import { PageHero } from "@/components/PageHero";
+import { Faixa } from "@/components/Faixa";
+import { Link } from "react-router-dom";
+import bgComo from "@/assets/unidade-xerem-balcao.jpg";
+import { IcCopo, IcCasquinha, IcSparkles, IcBalanca, IcCoracao } from "@/components/icons";
 
-const steps = [
-  {
-    icon: CupSoda,
-    title: "Escolha seu copo",
-    desc: "Temos tamanhos variados para você montar a porção ideal. Escolha o que combina com sua fome e vontade.",
-  },
-  {
-    icon: IceCream,
-    title: "Sirva os sabores",
-    desc: "Passe pelas cubas e sirva os gelatos e açaís que mais te atraírem. Todos artesanais, todos frescos.",
-  },
-  {
-    icon: Sparkles,
-    title: "Monte combinações",
-    desc: "Misture sabores do seu jeito. Não existe combinação errada — existe a que te faz feliz. Experimente sem medo.",
-  },
-  {
-    icon: Scale,
-    title: "Pese no final",
-    desc: "Leve seu copo ao caixa e pague pelo peso. Simples, justo e transparente. Sem surpresas.",
-  },
-  {
-    icon: Heart,
-    title: "Aproveite a experiência",
-    desc: "Sente-se em um ambiente acolhedor, compartilhe com quem você gosta e curta cada colherada.",
-  },
+const passos = [
+  { n: "01", Icone: IcCopo, titulo: "Escolha seu copo", texto: "Temos tamanhos variados para você montar a porção ideal. Escolha o que combina com sua fome e vontade." },
+  { n: "02", Icone: IcCasquinha, titulo: "Sirva os sabores", texto: "Passe pelas cubas e sirva os gelatos e açaís que mais te atraírem. Todos artesanais, todos frescos." },
+  { n: "03", Icone: IcSparkles, titulo: "Monte combinações", texto: "Misture sabores do seu jeito. Não existe combinação errada — existe a que te faz feliz." },
+  { n: "04", Icone: IcBalanca, titulo: "Pese no final", texto: "Leve seu copo ao caixa e pague pelo peso. Simples, justo e transparente. Sem surpresas." },
+  { n: "05", Icone: IcCoracao, titulo: "Aproveite a experiência", texto: "Sente-se em um ambiente acolhedor, compartilhe com quem você gosta e curta cada colherada." },
 ];
 
-const tips = [
+const dicas = [
   "Experimente combinar gelato com sorbet para um contraste incrível de texturas.",
   "Comece pelo sabor mais suave e vá aumentando a intensidade.",
   "Açaí com gelato de pistache? Parece ousado, mas funciona muito bem.",
@@ -42,66 +23,61 @@ const tips = [
 export default function ComoFunciona() {
   return (
     <Layout>
-      <section className="relative bg-primary py-20 md:py-28 overflow-hidden">
-        <img src={toppingsImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0 bg-primary/80" />
-        <div className="container relative">
-          <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6">
-              Como funciona
-            </h1>
-            <p className="font-sans text-lg text-primary-foreground/70 leading-relaxed">
-              Self-service descomplicado. Você escolhe, você monta, você aproveita.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Como funciona"
+        titulo="Self-service descomplicado"
+        texto="Você escolhe, você monta, você aproveita."
+        bg={bgComo}
+      />
 
-      {/* Passos */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container">
-          <SectionHeading
-            title="Passo a passo"
-            subtitle="Simples, intuitivo e pensado para a sua melhor experiência."
-          />
-          <div className="max-w-4xl mx-auto space-y-8">
-            {steps.map((step, i) => (
-              <Card key={i} className="border-0 shadow-sm bg-warm-white overflow-hidden">
-                <CardContent className="p-6 md:p-8 flex flex-col md:flex-row items-start gap-6">
-                  <div className="flex items-center gap-4 shrink-0">
-                    <span className="text-3xl font-serif font-bold text-primary/20">{String(i + 1).padStart(2, "0")}</span>
-                    <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                      <step.icon className="w-7 h-7 text-primary" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl font-semibold text-foreground mb-2">{step.title}</h3>
-                    <p className="font-sans text-muted-foreground leading-relaxed">{step.desc}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+      <section className="sec">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow-d">Passo a passo</p>
+            <h2>Simples, intuitivo e do seu jeito</h2>
           </div>
-        </div>
-      </section>
-
-      {/* Dicas */}
-      <section className="py-16 md:py-24 bg-muted/50">
-        <div className="container">
-          <SectionHeading
-            title="Dicas de quem entende"
-            subtitle="Aproveite sua experiência ao máximo com estas sugestões."
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {tips.map((tip, i) => (
-              <div key={i} className="bg-warm-white rounded-lg p-6 flex items-start gap-4">
-                <span className="text-2xl font-serif font-bold text-primary/30">{i + 1}</span>
-                <p className="font-sans text-sm text-muted-foreground leading-relaxed">{tip}</p>
+          <div style={{ maxWidth: 840, margin: "0 auto" }}>
+            {passos.map(({ n, Icone, titulo, texto }) => (
+              <div className="passo-row" key={n}>
+                <span className="num">{n}</span>
+                <div className="ico">
+                  <Icone />
+                </div>
+                <div>
+                  <h3>{titulo}</h3>
+                  <p>{texto}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <section className="sec alt">
+        <div className="wrap">
+          <div className="sec-head">
+            <p className="eyebrow-d">Dicas de quem entende</p>
+            <h2>Aproveite ao máximo</h2>
+          </div>
+          <div className="dicas">
+            {dicas.map((d, i) => (
+              <div className="dica" key={i}>
+                <b>{i + 1}</b>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Faixa titulo="Monte a sua agora" texto="Escolha a unidade mais perto e venha experimentar.">
+        <Link className="btn btn-gold" to="/unidades">
+          Ver unidades
+        </Link>
+        <Link className="btn btn-ghost" to="/sabores">
+          Ver sabores
+        </Link>
+      </Faixa>
     </Layout>
   );
 }

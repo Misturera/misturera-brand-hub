@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ScrollManager } from "@/components/ScrollManager";
 import Index from "./pages/Index.tsx";
 import QuemSomos from "./pages/QuemSomos.tsx";
 import NossaHistoria from "./pages/NossaHistoria.tsx";
@@ -22,6 +23,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollManager />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/quem-somos" element={<QuemSomos />} />

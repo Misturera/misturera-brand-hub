@@ -22,6 +22,6 @@ export const beneficiosClube: string[] = [
   "Avalie sua experiência e ganhe pontos bônus",
 ];
 
-// Endpoints da MistureraCheck (portal do sócio vive em mistureracheck.com).
+// Portal do sócio (cadastro) — clube.misturera.com.
 export const MISTURERACHECK_CADASTRO_URL =
-  "https://mistureracheck.com/pdv/cliente/cadastro";
+  "https://clube.misturera.com/pdv/cliente/cadastro";

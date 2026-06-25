@@ -24,4 +24,4 @@ export const beneficiosClube: string[] = [
 
 // Portal do sócio (cadastro) — clube.misturera.com.
 export const MISTURERACHECK_CADASTRO_URL =
-  "https://clube.misturera.com/pdv/cliente/cadastro";
+  "https://clube.misturera.com/cadastro";

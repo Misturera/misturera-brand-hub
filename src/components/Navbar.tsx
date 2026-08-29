@@ -14,6 +14,7 @@ const navLinks = [
   { label: "Avalie", to: "/avalie" },
   { label: "Clube", to: "/clube" },
   { label: "Contato", to: "/contato" },
+  { label: "Trabalhe conosco", to: "/trabalhe-conosco" },
 ];
 
 export function Navbar() {

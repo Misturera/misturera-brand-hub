@@ -13,6 +13,7 @@ import ComoFunciona from "./pages/ComoFunciona.tsx";
 import Avalie from "./pages/Avalie.tsx";
 import ClubePage from "./pages/ClubePage.tsx";
 import Contato from "./pages/Contato.tsx";
+import TrabalheConosco from "./pages/TrabalheConosco.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -34,7 +35,9 @@ const App = () => (
           <Route path="/avalie" element={<Avalie />} />
           <Route path="/clube" element={<ClubePage />} />
           <Route path="/contato" element={<Contato />} />
+          <Route path="/trabalhe-conosco" element={<TrabalheConosco />} />
           <Route path="*" element={<NotFound />} />
+
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

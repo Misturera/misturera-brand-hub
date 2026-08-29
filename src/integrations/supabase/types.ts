@@ -14,7 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      candidatos: {
+        Row: {
+          bairro_cidade: string
+          consentimento_lgpd: boolean
+          created_at: string
+          curriculo_url: string | null
+          data_nascimento: string
+          disponibilidade_inicio: string
+          id: string
+          motivacao: string
+          nome_completo: string
+          perfil_rotina: string
+          situacao_cliente: string
+          status: string
+          tem_experiencia: boolean
+          trabalha_fim_de_semana: boolean
+          transporte: string
+          turnos: string[]
+          ultimo_trabalho: string | null
+          unidade_interesse: string
+          updated_at: string
+          vaga_interesse: string
+          whatsapp: string
+        }
+        Insert: {
+          bairro_cidade: string
+          consentimento_lgpd?: boolean
+          created_at?: string
+          curriculo_url?: string | null
+          data_nascimento: string
+          disponibilidade_inicio: string
+          id?: string
+          motivacao: string
+          nome_completo: string
+          perfil_rotina: string
+          situacao_cliente: string
+          status?: string
+          tem_experiencia: boolean
+          trabalha_fim_de_semana: boolean
+          transporte: string
+          turnos?: string[]
+          ultimo_trabalho?: string | null
+          unidade_interesse: string
+          updated_at?: string
+          vaga_interesse: string
+          whatsapp: string
+        }
+        Update: {
+          bairro_cidade?: string
+          consentimento_lgpd?: boolean
+          created_at?: string
+          curriculo_url?: string | null
+          data_nascimento?: string
+          disponibilidade_inicio?: string
+          id?: string
+          motivacao?: string
+          nome_completo?: string
+          perfil_rotina?: string
+          situacao_cliente?: string
+          status?: string
+          tem_experiencia?: boolean
+          trabalha_fim_de_semana?: boolean
+          transporte?: string
+          turnos?: string[]
+          ultimo_trabalho?: string | null
+          unidade_interesse?: string
+          updated_at?: string
+          vaga_interesse?: string
+          whatsapp?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

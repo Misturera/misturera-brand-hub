@@ -1,36 +1,63 @@
-## Diagnóstico
+# Página de Recrutamento — Trabalhe na Misturêra
 
-- A cor está sendo aplicada no lugar certo: `src/index.css` é importado por `src/main.tsx`, e o Tailwind usa os tokens de `tailwind.config.ts` como `bg-primary`, `text-primary`, `bg-forest` etc.
-- O problema principal é que o valor atual do token não equivale a `#1E3D2F`:
-  - Atual no código: `hsl(153 50% 11%)`
-  - Resultado real: aproximadamente `#0E2A1D`
-  - Correto para `#1E3D2F`: `hsl(153 34% 18%)`
-  - OKLCH equivalente: `oklch(33.12% 0.0450 163.09)`
-- Na home, a percepção do verde também é mascarada por sobreposições:
-  - Hero usa imagem com `opacity-20`.
-  - Hero usa gradiente `from-primary via-primary/95 to-secondary/90`, misturando o verde principal com o verde secundário.
-  - Navbar usa `bg-primary/95`, não `bg-primary` sólido.
+Página pública com formulário de candidatura, currículo opcional e envio para o banco de dados.
+Sem painel administrativo, login ou outras páginas nesta etapa.
 
-## Plano de alteração
+## Rota e navegação
 
-1. **Corrigir o token principal para o valor exato**
-   - Trocar todos os tokens que representam o verde-floresta principal de `153 50% 11%` para `153 34% 18%` em `src/index.css`.
-   - Aplicar isso em `--primary`, `--foreground`, `--card-foreground`, `--popover-foreground`, `--accent-foreground`, `--ring`, `--forest`, `--sidebar-background` e equivalentes relacionados ao verde principal.
-   - Atualizar apenas comentários incorretos que dizem `#1E3D2F` mas apontam para HSL errado.
+- Nova rota `/trabalhe-conosco` com a página `TrabalheConosco`.
+- Item "Trabalhe conosco" no menu (desktop e mobile), após "Contato".
+- Visual igual ao restante do site: `Layout` + `PageHero` (verde/dourado) e o card de formulário
+  já existente (`.form-card`, `.campo`, `.opcao`, `.ok-box`).
 
-2. **Fazer varredura global final**
-   - Procurar `#1F3A34`, `#1E3D2F`, `153 50% 11%`, `153 34% 18%`, `oklch(` e variações em todo o projeto.
-   - Se aparecer `#1F3A34`, substituir por `#1E3D2F`.
-   - Se aparecer OKLCH do verde antigo, substituir por `oklch(33.12% 0.0450 163.09)`.
-   - Não alterar dourado, verde musgo, off-white, areia, botões de WhatsApp ou qualquer outra cor.
+## Formulário (4 blocos)
 
-3. **Resolver a diferença visual na prática**
-   - Manter o verde principal exato nos fundos que devem ser verdes.
-   - Na home, ajustar apenas os elementos que mascaram o verde principal:
-     - Navbar: usar `bg-primary` em vez de `bg-primary/95`, se a intenção for cor sólida.
-     - Hero: trocar o gradiente misturado com `secondary` por uma sobreposição baseada no próprio `primary`, preservando a imagem de fundo, mas sem mudar para outro verde.
-   - Isso evita que o site pareça com outro tom mesmo com o token correto.
+**Bloco 1 — Seus dados**
+Nome completo, data de nascimento, WhatsApp com máscara `(XX) XXXXX-XXXX`, bairro e cidade,
+unidade de interesse (Santa Cruz da Serra, Xerém, Piabetá, Fábrica) e vaga de interesse
+(Atendente, Produção/Fábrica, Gerente de loja, Outra). Todos obrigatórios.
 
-4. **Validar visualmente**
-   - Abrir a prévia na home e conferir navbar, hero e seções `bg-primary`.
-   - Confirmar que o verde carregado corresponde ao padrão intenso solicitado e que não houve mudança em outras cores/estilos fora das interferências do verde principal.
+**Bloco 2 — Disponibilidade**
+Fins de semana e feriados (Sim/Não), turnos disponíveis (Manhã, Tarde, Noite, Integral — ao menos
+um), como chegaria (A pé, Bicicleta, Ônibus, Moto ou carro próprio) e quando pode começar
+(Imediatamente, Em até 15 dias, Mais de 15 dias).
+
+**Bloco 3 — Experiência**
+Já trabalhou com atendimento ao público ou alimentação (Sim/Não) e último trabalho — função, local
+e tempo (opcional, até 300 caracteres).
+
+**Bloco 4 — Sobre você** (obrigatórias, até 400 caracteres cada, com contador)
+1. Por que quer trabalhar na Misturêra?
+2. Um cliente chega irritado reclamando do pedido. O que você faz?
+3. Prefere rotina bem definida ou resolver imprevistos? Por quê?
+
+**Currículo** — upload opcional, rotulado como opcional: PDF, JPG ou PNG, até 5 MB.
+
+**LGPD** — checkbox obrigatório antes do botão: "Autorizo o uso dos meus dados exclusivamente para
+este processo seletivo e permanência no banco de talentos da Misturêra por até 12 meses."
+
+## Envio
+
+- Validação de todos os obrigatórios e do formato do WhatsApp (11 dígitos), com mensagens de erro
+  por campo.
+- Botão desabilitado enquanto envia (bloqueia duplo clique).
+- Currículo enviado antes do registro; se o upload falhar, o envio é interrompido com aviso.
+- Após sucesso, o formulário é substituído pela confirmação: "Recebemos sua candidatura! Se o seu
+  perfil avançar, entraremos em contato pelo WhatsApp."
+
+## Detalhes técnicos
+
+**Tabela `candidatos`** (Lovable Cloud): nome_completo, data_nascimento, whatsapp, bairro_cidade,
+unidade_interesse, vaga_interesse, trabalha_fim_de_semana, turnos (array de texto), transporte,
+disponibilidade_inicio, tem_experiencia, ultimo_trabalho, motivacao, situacao_cliente,
+perfil_rotina, curriculo_url, consentimento_lgpd, status (padrão `novo`), created_at/updated_at.
+
+**Acesso:** RLS ativa. Política de inserção pública (anon + authenticated) para o formulário; nenhuma
+política de leitura pública — ninguém consegue listar candidaturas pelo site. A leitura ficará para o
+painel de RH, em etapa futura. GRANT de inserção para anon/authenticated e ALL para service_role.
+
+**Storage:** bucket `curriculos` privado, com política que permite apenas envio (upload) público e
+nenhuma leitura anônima; o caminho do arquivo é salvo em `curriculo_url`.
+
+**Arquivos:** `src/pages/TrabalheConosco.tsx` (nova), `src/data/recrutamento.ts` (opções dos selects),
+`src/App.tsx` (rota) e `src/components/Navbar.tsx` (item de menu). Nenhuma outra página é alterada.

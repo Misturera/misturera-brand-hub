@@ -58,9 +58,8 @@ export const lojas: Loja[] = [
     endereco:
       "R. Arthur Rodrigues Loivos, Nº 300, Piabetá, Magé – RJ, 25931-834",
     referencia: "Próximo ao Galetão de Piabetá.",
-    // WhatsApp ainda não disponível — botão fica desabilitado até haver número real.
-    whatsapp: undefined,
-    telefoneExibicao: undefined,
+    whatsapp: "5521978923835",
+    telefoneExibicao: "(21) 97892-3835",
     mapa: "https://maps.app.goo.gl/4yL7QyTVtX4Rif8EA",
     foto: unidadeGenerica,
   },

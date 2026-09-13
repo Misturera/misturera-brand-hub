@@ -46,9 +46,12 @@ curl -H "x-api-key: $RH_API_KEY" \
 ## Aviso imediato (webhook) — candidato entra no funil na hora
 
 Quando alguém envia o formulário de "Trabalhe conosco", este projeto dispara um POST
-para o endpoint do sistema de RH (secret `RH_WEBHOOK_URL`), com header `x-api-key: <RH_API_KEY>`.
+para o endpoint do sistema de RH (secret `RH_WEBHOOK_URL`), com header
+`x-captacao-token: <RH_CAPTACAO_TOKEN>` e corpo `multipart/form-data` contendo
+`nome`, `cargo_desejado`, `origem`, `telefone`, `cidade`, `observacoes` e, quando houver,
+o arquivo `curriculo` (PDF/JPG/PNG) baixado do armazenamento privado.
 
-Corpo enviado:
+Corpo enviado (legado, JSON):
 
 ```json
 {

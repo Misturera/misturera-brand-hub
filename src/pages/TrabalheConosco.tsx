@@ -101,7 +101,9 @@ export default function TrabalheConosco() {
         curriculoUrl = caminho;
       }
 
+      const candidatoId = crypto.randomUUID();
       const { error } = await supabase.from("candidatos").insert({
+        id: candidatoId,
         nome_completo: nome.trim(),
         data_nascimento: nascimento,
         whatsapp: whatsapp.replace(/\D/g, ""),
@@ -122,7 +124,14 @@ export default function TrabalheConosco() {
         status: "novo",
       });
       if (error) throw error;
+
+      // Avisa o sistema de RH na hora (não bloqueia a confirmação ao candidato)
+      supabase.functions
+        .invoke("notificar-rh", { body: { id: candidatoId } })
+        .catch(() => undefined);
+
       setEnviado(true);
+
     } catch {
       setErroGeral("Não foi possível enviar agora. Tente novamente em instantes.");
     } finally {

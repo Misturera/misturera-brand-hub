@@ -43,16 +43,28 @@ Deno.serve(async (req) => {
     }
 
     const payload = {
-      evento: 'candidatura.criada',
-      etapa_funil: 'novo',
-      candidato,
+      nome: candidato.nome_completo,
+      cargo_desejado: candidato.vaga_interesse,
+      origem: 'site',
+      telefone: candidato.whatsapp,
+      cidade: candidato.bairro_cidade,
+      observacoes: [
+        `Unidade de interesse: ${candidato.unidade_interesse}`,
+        `Turnos: ${(candidato.turnos ?? []).join(', ')}`,
+        `Início: ${candidato.disponibilidade_inicio}`,
+        `Motivação: ${candidato.motivacao}`,
+        `Situação com cliente: ${candidato.situacao_cliente}`,
+        `Perfil de rotina: ${candidato.perfil_rotina}`,
+        candidato.curriculo_url ? `Currículo: ${candidato.curriculo_url}` : null,
+        `ID candidato: ${candidato.id}`,
+      ].filter(Boolean).join('\n'),
     };
 
     const res = await fetch(webhook, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': Deno.env.get('RH_API_KEY') ?? '',
+        'x-captacao-token': Deno.env.get('RH_CAPTACAO_TOKEN') ?? '',
       },
       body: JSON.stringify(payload),
     });

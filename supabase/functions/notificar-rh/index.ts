@@ -42,31 +42,43 @@ Deno.serve(async (req) => {
       return json({ notificado: false, motivo: 'webhook_nao_configurado' });
     }
 
-    const payload = {
-      nome: candidato.nome_completo,
-      cargo_desejado: candidato.vaga_interesse,
-      origem: 'site',
-      telefone: candidato.whatsapp,
-      cidade: candidato.bairro_cidade,
-      observacoes: [
-        `Unidade de interesse: ${candidato.unidade_interesse}`,
-        `Turnos: ${(candidato.turnos ?? []).join(', ')}`,
-        `Início: ${candidato.disponibilidade_inicio}`,
-        `Motivação: ${candidato.motivacao}`,
-        `Situação com cliente: ${candidato.situacao_cliente}`,
-        `Perfil de rotina: ${candidato.perfil_rotina}`,
-        candidato.curriculo_url ? `Currículo: ${candidato.curriculo_url}` : null,
-        `ID candidato: ${candidato.id}`,
-      ].filter(Boolean).join('\n'),
-    };
+    const observacoes = [
+      `Unidade de interesse: ${candidato.unidade_interesse}`,
+      `Turnos: ${(candidato.turnos ?? []).join(', ')}`,
+      `Início: ${candidato.disponibilidade_inicio}`,
+      `Motivação: ${candidato.motivacao}`,
+      `Situação com cliente: ${candidato.situacao_cliente}`,
+      `Perfil de rotina: ${candidato.perfil_rotina}`,
+      `ID candidato: ${candidato.id}`,
+    ].join('\n');
+
+    const form = new FormData();
+    form.append('nome', candidato.nome_completo);
+    form.append('cargo_desejado', candidato.vaga_interesse);
+    form.append('origem', 'site');
+    form.append('observacoes', observacoes);
+    if (candidato.whatsapp) form.append('telefone', candidato.whatsapp);
+    if (candidato.bairro_cidade) form.append('cidade', candidato.bairro_cidade);
+
+    // Anexa o currículo (arquivo privado) quando existir
+    if (candidato.curriculo_url) {
+      const { data: arquivo, error: downErr } = await supabase.storage
+        .from('curriculos')
+        .download(candidato.curriculo_url);
+      if (downErr) {
+        console.warn('Falha ao baixar currículo, enviando sem anexo:', downErr.message);
+      } else if (arquivo) {
+        const nomeArquivo = candidato.curriculo_url.split('/').pop() || 'curriculo.pdf';
+        form.append('curriculo', arquivo, nomeArquivo);
+      }
+    }
 
     const res = await fetch(webhook, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         'x-captacao-token': Deno.env.get('RH_CAPTACAO_TOKEN') ?? '',
       },
-      body: JSON.stringify(payload),
+      body: form,
     });
 
     const texto = await res.text();

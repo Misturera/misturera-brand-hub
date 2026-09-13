@@ -42,3 +42,21 @@ Link temporário de 10 minutos para o PDF/imagem no armazenamento privado.
 curl -H "x-api-key: $RH_API_KEY" \
   "https://ohndxirghofoqdepjllt.supabase.co/functions/v1/rh-candidatos?status=novo&unidade=Xer%C3%A9m&limit=20"
 ```
+
+## Aviso imediato (webhook) — candidato entra no funil na hora
+
+Quando alguém envia o formulário de "Trabalhe conosco", este projeto dispara um POST
+para o endpoint do sistema de RH (secret `RH_WEBHOOK_URL`), com header `x-api-key: <RH_API_KEY>`.
+
+Corpo enviado:
+
+```json
+{
+  "evento": "candidatura.criada",
+  "etapa_funil": "novo",
+  "candidato": { "id": "uuid", "nome_completo": "...", "whatsapp": "...", "unidade_interesse": "...", "vaga_interesse": "...", "turnos": ["Manhã"], "motivacao": "...", "situacao_cliente": "...", "perfil_rotina": "...", "curriculo_url": "arquivo.pdf", "status": "novo", "created_at": "..." }
+}
+```
+
+O RH deve responder 2xx. Se o webhook não estiver configurado ou falhar, o candidato
+continua salvo e disponível via `GET /rh-candidatos?status=novo`.

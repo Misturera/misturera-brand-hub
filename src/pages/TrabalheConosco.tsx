@@ -6,7 +6,6 @@ import { supabase } from "@/integrations/supabase/client";
 import {
   UNIDADES_VAGA,
   VAGAS,
-  TURNOS,
   INICIOS,
   TEXTO_LGPD,
   CURRICULO_TIPOS,
@@ -38,7 +37,6 @@ export default function TrabalheConosco() {
   const [vaga, setVaga] = useState("");
 
   const [fds, setFds] = useState<boolean | null>(null);
-  const [turnos, setTurnos] = useState<string[]>([]);
   const [inicio, setInicio] = useState("");
 
   const [experiencia, setExperiencia] = useState<boolean | null>(null);
@@ -55,9 +53,6 @@ export default function TrabalheConosco() {
   const [enviado, setEnviado] = useState(false);
   const [erroGeral, setErroGeral] = useState<string | null>(null);
 
-  const toggleTurno = (t: string) =>
-    setTurnos((p) => (p.includes(t) ? p.filter((x) => x !== t) : [...p, t]));
-
   const validar = (): Erros => {
     const e: Erros = {};
     if (!nome.trim()) e.nome = "Informe seu nome completo.";
@@ -68,7 +63,6 @@ export default function TrabalheConosco() {
     if (!unidade) e.unidade = "Escolha a unidade de interesse.";
     if (!vaga) e.vaga = "Escolha a vaga de interesse.";
     if (fds === null) e.fds = "Responda sobre fins de semana e feriados.";
-    if (turnos.length === 0) e.turnos = "Selecione ao menos um turno.";
     if (!inicio) e.inicio = "Informe quando pode começar.";
     if (experiencia === null) e.experiencia = "Responda sobre sua experiência.";
     if (curriculo) {
@@ -111,7 +105,6 @@ export default function TrabalheConosco() {
         unidade_interesse: unidade,
         vaga_interesse: vaga,
         trabalha_fim_de_semana: fds as boolean,
-        turnos,
         disponibilidade_inicio: inicio,
         tem_experiencia: experiencia as boolean,
         ultimo_trabalho: ultimoTrabalho.trim() || null,
@@ -235,17 +228,6 @@ export default function TrabalheConosco() {
                     <button type="button" className={`opcao${fds === false ? " on" : ""}`} onClick={() => setFds(false)}>Não</button>
                   </div>
                   <Erro campo="fds" />
-                </div>
-
-                <div className="grupo">
-                  <p className="campo-label">Turnos disponíveis</p>
-                  <div className="opcoes">
-                    {TURNOS.map((t) => (
-                      <button type="button" key={t} className={`opcao${turnos.includes(t) ? " on" : ""}`}
-                        aria-pressed={turnos.includes(t)} onClick={() => toggleTurno(t)}>{t}</button>
-                    ))}
-                  </div>
-                  <Erro campo="turnos" />
                 </div>
 
                 <div className="grupo">

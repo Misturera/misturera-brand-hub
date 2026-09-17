@@ -44,7 +44,6 @@ Deno.serve(async (req) => {
 
     const linhas = [
       `Unidade de interesse: ${candidato.unidade_interesse}`,
-      `Turnos: ${(candidato.turnos ?? []).join(', ')}`,
       `Início: ${candidato.disponibilidade_inicio}`,
       candidato.maior_de_18 === null || candidato.maior_de_18 === undefined
         ? null

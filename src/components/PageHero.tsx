@@ -4,12 +4,13 @@ interface PageHeroProps {
   eyebrow: string;
   titulo: ReactNode;
   texto?: string;
+  destaque?: string;
   mini?: string;
   bg?: string;
 }
 
 // Hero das subpáginas: degradê verde + brilho dourado + grão (via CSS .phero).
-export function PageHero({ eyebrow, titulo, texto, mini, bg }: PageHeroProps) {
+export function PageHero({ eyebrow, titulo, texto, destaque, mini, bg }: PageHeroProps) {
   return (
     <section className="phero">
       {bg && (

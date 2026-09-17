@@ -42,15 +42,19 @@ Deno.serve(async (req) => {
       return json({ notificado: false, motivo: 'webhook_nao_configurado' });
     }
 
-    const observacoes = [
+    const linhas = [
       `Unidade de interesse: ${candidato.unidade_interesse}`,
       `Turnos: ${(candidato.turnos ?? []).join(', ')}`,
       `Início: ${candidato.disponibilidade_inicio}`,
-      `Motivação: ${candidato.motivacao}`,
-      `Situação com cliente: ${candidato.situacao_cliente}`,
-      `Perfil de rotina: ${candidato.perfil_rotina}`,
+      candidato.maior_de_18 === null || candidato.maior_de_18 === undefined
+        ? null
+        : `18 anos ou mais: ${candidato.maior_de_18 ? 'Sim' : 'Não'}`,
+      candidato.motivacao ? `Motivação: ${candidato.motivacao}` : null,
+      candidato.situacao_cliente ? `Situação com cliente: ${candidato.situacao_cliente}` : null,
+      candidato.perfil_rotina ? `Perfil de rotina: ${candidato.perfil_rotina}` : null,
       `ID candidato: ${candidato.id}`,
-    ].join('\n');
+    ].filter(Boolean);
+    const observacoes = linhas.join('\n');
 
     const form = new FormData();
     form.append('nome', candidato.nome_completo);

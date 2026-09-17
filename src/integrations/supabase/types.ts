@@ -20,17 +20,18 @@ export type Database = {
           consentimento_lgpd: boolean
           created_at: string
           curriculo_url: string | null
-          data_nascimento: string
+          data_nascimento: string | null
           disponibilidade_inicio: string
           id: string
-          motivacao: string
+          maior_de_18: boolean | null
+          motivacao: string | null
           nome_completo: string
-          perfil_rotina: string
-          situacao_cliente: string
+          perfil_rotina: string | null
+          situacao_cliente: string | null
           status: string
           tem_experiencia: boolean
           trabalha_fim_de_semana: boolean
-          transporte: string
+          transporte: string | null
           turnos: string[]
           ultimo_trabalho: string | null
           unidade_interesse: string
@@ -43,17 +44,18 @@ export type Database = {
           consentimento_lgpd?: boolean
           created_at?: string
           curriculo_url?: string | null
-          data_nascimento: string
+          data_nascimento?: string | null
           disponibilidade_inicio: string
           id?: string
-          motivacao: string
+          maior_de_18?: boolean | null
+          motivacao?: string | null
           nome_completo: string
-          perfil_rotina: string
-          situacao_cliente: string
+          perfil_rotina?: string | null
+          situacao_cliente?: string | null
           status?: string
           tem_experiencia: boolean
           trabalha_fim_de_semana: boolean
-          transporte: string
+          transporte?: string | null
           turnos?: string[]
           ultimo_trabalho?: string | null
           unidade_interesse: string
@@ -66,17 +68,18 @@ export type Database = {
           consentimento_lgpd?: boolean
           created_at?: string
           curriculo_url?: string | null
-          data_nascimento?: string
+          data_nascimento?: string | null
           disponibilidade_inicio?: string
           id?: string
-          motivacao?: string
+          maior_de_18?: boolean | null
+          motivacao?: string | null
           nome_completo?: string
-          perfil_rotina?: string
-          situacao_cliente?: string
+          perfil_rotina?: string | null
+          situacao_cliente?: string | null
           status?: string
           tem_experiencia?: boolean
           trabalha_fim_de_semana?: boolean
-          transporte?: string
+          transporte?: string | null
           turnos?: string[]
           ultimo_trabalho?: string | null
           unidade_interesse?: string

@@ -144,6 +144,7 @@ export default function TrabalheConosco() {
         eyebrow="Trabalhe conosco"
         titulo="Faça parte do time Misturêra"
         texto="Preencha o formulário abaixo. Se o seu perfil combinar com a gente, entramos em contato."
+        destaque="Leva menos de 3 minutos — e não precisa de currículo."
       />
 
       <section className="sec alt">

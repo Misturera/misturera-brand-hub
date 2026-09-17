@@ -23,6 +23,7 @@ export function PageHero({ eyebrow, titulo, texto, destaque, mini, bg }: PageHer
         <p className="eyebrow">{eyebrow}</p>
         <h1>{titulo}</h1>
         {texto && <p>{texto}</p>}
+        {destaque && <p className="destaque">{destaque}</p>}
         {mini && <p className="mini">{mini}</p>}
       </div>
     </section>

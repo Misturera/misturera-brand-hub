@@ -138,6 +138,7 @@ img{max-width:100%;display:block;}
 
 /* ===== cards de valores / pilares ===== */
 .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
 .card-v{background:var(--branco);border:1px solid var(--linha);border-radius:18px;padding:26px 24px;box-shadow:var(--sombra);}
 .card-v .ico{width:48px;height:48px;border-radius:12px;background:rgba(201,168,76,.14);display:flex;align-items:center;justify-content:center;}
 .card-v .ico svg{width:24px;height:24px;stroke:var(--dourado-escuro);}
@@ -346,7 +347,7 @@ textarea.campo{min-height:120px;resize:vertical;}
 @media (max-width:1100px){.nav{display:none;}.menu-btn{display:block;}}
 @media (max-width:920px){
  .dois{grid-template-columns:1fr;gap:28px;}.dois-foto{order:2;}
- .cards3{grid-template-columns:1fr 1fr;}
+ .cards3,.cards4{grid-template-columns:1fr 1fr;}
  .passos5{grid-template-columns:repeat(2,1fr);}
  .sabores{grid-template-columns:1fr 1fr;}
  .clube-card,.contato-grid{grid-template-columns:1fr;gap:30px;}
@@ -363,7 +364,7 @@ textarea.campo{min-height:120px;resize:vertical;}
  .orb.b{width:220px;height:220px;}
 }
 @media (max-width:560px){
- .cards3,.passos5,.sabores{grid-template-columns:1fr;}
+ .cards3,.cards4,.passos5,.sabores{grid-template-columns:1fr;}
  .rodape-in{grid-template-columns:1fr;}
  .opcoes{grid-template-columns:1fr 1fr;}
  .uacoes .btn,.faixa .acoes .btn{flex:1 1 100%;}

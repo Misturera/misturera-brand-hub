@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
-import { IcCheck, IcEscudo, IcSeta } from "@/components/icons";
+import { IcCheck, IcCopo, IcCoracao, IcEscudo, IcMedalha } from "@/components/icons";
 import { supabase } from "@/integrations/supabase/client";
 import {
   UNIDADES_VAGA,
@@ -24,8 +24,9 @@ type Erros = Record<string, string>;
 
 const OFERTAS = [
   { Ic: IcEscudo, titulo: "Registro CLT", texto: "Contratação formal, com todos os direitos." },
-  { Ic: IcSeta, titulo: "Vale-transporte", texto: "Sua ida e volta garantidas." },
-  { Ic: IcCheck, titulo: "Crescimento junto com a marca", texto: "Quem começa com a gente cresce com a gente." },
+  { Ic: IcMedalha, titulo: "Prêmio assiduidade", texto: "Recompensa por pontualidade e presença." },
+  { Ic: IcCopo, titulo: "Vale consumo", texto: "Desconto nas delícias da casa." },
+  { Ic: IcCoracao, titulo: "Gym pass (Hellhub)", texto: "Bem-estar e academia para o seu dia." },
 ];
 
 export default function TrabalheConosco() {
@@ -152,7 +153,7 @@ export default function TrabalheConosco() {
           <div className="sec-head">
             <h2>O que oferecemos</h2>
           </div>
-          <div className="cards3">
+          <div className="cards4">
             {OFERTAS.map(({ Ic, titulo, texto }) => (
               <div className="card-v" key={titulo}>
                 <div className="ico"><Ic /></div>

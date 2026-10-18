@@ -116,26 +116,50 @@ export default function ClubePage() {
             <div className="clube-txt">
               <p className="eyebrow-d">Acessar meus pontos</p>
               <h2>Consulte seu saldo pelo CPF</h2>
-              <p>Digite seu CPF para ver seu saldo e histórico.</p>
-              <div style={{ marginTop: 20, maxWidth: 360, display: "flex", gap: 10 }}>
-                <input
-                  className="campo"
-                  inputMode="numeric"
-                  maxLength={14}
-                  placeholder="000.000.000-00"
-                  value={cpf}
-                  onChange={(e) => setCpf(maskCpf(e.target.value))}
-                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  aria-label="CPF"
-                  style={{
-                    background: "rgba(245,230,200,.08)",
-                    border: "1px solid rgba(245,230,200,.22)",
-                    color: "var(--creme)",
-                  }}
-                />
-                <button className="btn btn-gold" onClick={handleSearch} disabled={loading}>
-                  {loading ? "..." : "Ver"}
-                </button>
+              <p>Digite seu CPF e celular para ver seu saldo e histórico.</p>
+              <p style={{ fontSize: 13, color: "rgba(245,230,200,.55)", marginTop: 6 }}>
+                Use o CPF e o celular do seu cadastro.
+              </p>
+              <div style={{ marginTop: 20, maxWidth: 420, display: "grid", gap: 10 }}>
+                <div style={{ display: "flex", gap: 10 }}>
+                  <input
+                    className="campo"
+                    inputMode="numeric"
+                    maxLength={14}
+                    placeholder="000.000.000-00"
+                    value={cpf}
+                    onChange={(e) => setCpf(maskCpf(e.target.value))}
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                    aria-label="CPF"
+                    style={{
+                      background: "rgba(245,230,200,.08)",
+                      border: "1px solid rgba(245,230,200,.22)",
+                      color: "var(--creme)",
+                      flex: 1,
+                    }}
+                  />
+                </div>
+                <div style={{ display: "flex", gap: 10 }}>
+                  <input
+                    className="campo"
+                    inputMode="numeric"
+                    maxLength={15}
+                    placeholder="(00) 00000-0000"
+                    value={celular}
+                    onChange={(e) => setCelular(maskCelular(e.target.value))}
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                    aria-label="Celular"
+                    style={{
+                      background: "rgba(245,230,200,.08)",
+                      border: "1px solid rgba(245,230,200,.22)",
+                      color: "var(--creme)",
+                      flex: 1,
+                    }}
+                  />
+                  <button className="btn btn-gold" onClick={handleSearch} disabled={loading}>
+                    {loading ? "..." : "Ver"}
+                  </button>
+                </div>
               </div>
               {error && (
                 <p style={{ fontSize: 13, color: "#F4B0A6", marginTop: 12 }} role="alert">

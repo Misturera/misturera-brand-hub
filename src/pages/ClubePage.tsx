@@ -6,8 +6,9 @@ import { IcCopo, IcSparkles, IcEstrela } from "@/components/icons";
 import { passosClube, beneficiosClube, MISTURERACHECK_CADASTRO_URL } from "@/data/clube";
 
 /* Integração preservada com a MistureraCheck:
-   - Consulta por CPF no Supabase da MistureraCheck (customers?cpf=eq.{cpf}&select=token)
-   - Redireciona para https://mistureracheck.com/cliente/{token}
+   - Consulta pela função clube_acessar (RPC): valida CPF + celular do cadastro
+     e devolve o token do cliente (nenhuma consulta direta à tabela customers).
+   - Redireciona para https://clube.misturera.com/cliente/{token}
    - Cadastro externo em mistureracheck.com/pdv/cliente/cadastro
    NÃO alterar endpoints/domínios. */
 const MISTURERACHECK_SUPABASE_URL = "https://fshbdwquqwtbedjchuyb.supabase.co";
@@ -22,36 +23,52 @@ function maskCpf(v: string) {
     .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
 }
 
+function maskCelular(v: string) {
+  const d = v.replace(/\D/g, "").slice(0, 11);
+  return d
+    .replace(/(\d{2})(\d)/, "($1) $2")
+    .replace(/(\d{5})(\d{1,4})$/, "$1-$2");
+}
+
 const iconesPasso = { compre: IcCopo, acumule: IcSparkles, resgate: IcEstrela } as const;
 
 export default function ClubePage() {
   const [cpf, setCpf] = useState("");
+  const [celular, setCelular] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async () => {
     setError(null);
     const cpfLimpo = cpf.replace(/\D/g, "");
+    const celularLimpo = celular.replace(/\D/g, "");
     if (cpfLimpo.length !== 11) {
       setError("CPF inválido.");
+      return;
+    }
+    if (celularLimpo.length !== 11) {
+      setError("Celular inválido. Inclua o DDD.");
       return;
     }
     setLoading(true);
     try {
       const response = await fetch(
-        `${MISTURERACHECK_SUPABASE_URL}/rest/v1/customers?cpf=eq.${cpfLimpo}&select=token`,
+        `${MISTURERACHECK_SUPABASE_URL}/rest/v1/rpc/clube_acessar`,
         {
+          method: "POST",
           headers: {
             apikey: MISTURERACHECK_ANON_KEY,
             Authorization: `Bearer ${MISTURERACHECK_ANON_KEY}`,
+            "Content-Type": "application/json",
           },
+          body: JSON.stringify({ _cpf: cpfLimpo, _celular: celularLimpo }),
         },
       );
       const data = await response.json();
-      if (Array.isArray(data) && data[0]?.token) {
-        window.location.href = `https://clube.misturera.com/cliente/${data[0].token}`;
+      if (data?.ok && data?.token) {
+        window.location.href = `https://clube.misturera.com/cliente/${data.token}`;
       } else {
-        setError("CPF não encontrado. Cadastre-se em uma de nossas unidades ou pelo link abaixo.");
+        setError(data?.mensagem ?? "Não foi possível consultar agora. Tente novamente em instantes.");
       }
     } catch {
       setError("Não foi possível consultar agora. Tente novamente em instantes.");
@@ -99,26 +116,50 @@ export default function ClubePage() {
             <div className="clube-txt">
               <p className="eyebrow-d">Acessar meus pontos</p>
               <h2>Consulte seu saldo pelo CPF</h2>
-              <p>Digite seu CPF para ver seu saldo e histórico.</p>
-              <div style={{ marginTop: 20, maxWidth: 360, display: "flex", gap: 10 }}>
-                <input
-                  className="campo"
-                  inputMode="numeric"
-                  maxLength={14}
-                  placeholder="000.000.000-00"
-                  value={cpf}
-                  onChange={(e) => setCpf(maskCpf(e.target.value))}
-                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  aria-label="CPF"
-                  style={{
-                    background: "rgba(245,230,200,.08)",
-                    border: "1px solid rgba(245,230,200,.22)",
-                    color: "var(--creme)",
-                  }}
-                />
-                <button className="btn btn-gold" onClick={handleSearch} disabled={loading}>
-                  {loading ? "..." : "Ver"}
-                </button>
+              <p>Digite seu CPF e celular para ver seu saldo e histórico.</p>
+              <p style={{ fontSize: 13, color: "rgba(245,230,200,.55)", marginTop: 6 }}>
+                Use o CPF e o celular do seu cadastro.
+              </p>
+              <div style={{ marginTop: 20, maxWidth: 420, display: "grid", gap: 10 }}>
+                <div style={{ display: "flex", gap: 10 }}>
+                  <input
+                    className="campo"
+                    inputMode="numeric"
+                    maxLength={14}
+                    placeholder="000.000.000-00"
+                    value={cpf}
+                    onChange={(e) => setCpf(maskCpf(e.target.value))}
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                    aria-label="CPF"
+                    style={{
+                      background: "rgba(245,230,200,.08)",
+                      border: "1px solid rgba(245,230,200,.22)",
+                      color: "var(--creme)",
+                      flex: 1,
+                    }}
+                  />
+                </div>
+                <div style={{ display: "flex", gap: 10 }}>
+                  <input
+                    className="campo"
+                    inputMode="numeric"
+                    maxLength={15}
+                    placeholder="(00) 00000-0000"
+                    value={celular}
+                    onChange={(e) => setCelular(maskCelular(e.target.value))}
+                    onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                    aria-label="Celular"
+                    style={{
+                      background: "rgba(245,230,200,.08)",
+                      border: "1px solid rgba(245,230,200,.22)",
+                      color: "var(--creme)",
+                      flex: 1,
+                    }}
+                  />
+                  <button className="btn btn-gold" onClick={handleSearch} disabled={loading}>
+                    {loading ? "..." : "Ver"}
+                  </button>
+                </div>
               </div>
               {error && (
                 <p style={{ fontSize: 13, color: "#F4B0A6", marginTop: 12 }} role="alert">

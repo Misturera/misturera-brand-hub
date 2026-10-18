@@ -6,8 +6,9 @@ import { IcCopo, IcSparkles, IcEstrela } from "@/components/icons";
 import { passosClube, beneficiosClube, MISTURERACHECK_CADASTRO_URL } from "@/data/clube";
 
 /* Integração preservada com a MistureraCheck:
-   - Consulta por CPF no Supabase da MistureraCheck (customers?cpf=eq.{cpf}&select=token)
-   - Redireciona para https://mistureracheck.com/cliente/{token}
+   - Consulta pela função clube_acessar (RPC): valida CPF + celular do cadastro
+     e devolve o token do cliente (nenhuma consulta direta à tabela customers).
+   - Redireciona para https://clube.misturera.com/cliente/{token}
    - Cadastro externo em mistureracheck.com/pdv/cliente/cadastro
    NÃO alterar endpoints/domínios. */
 const MISTURERACHECK_SUPABASE_URL = "https://fshbdwquqwtbedjchuyb.supabase.co";
@@ -20,6 +21,13 @@ function maskCpf(v: string) {
     .replace(/(\d{3})(\d)/, "$1.$2")
     .replace(/(\d{3})(\d)/, "$1.$2")
     .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+}
+
+function maskCelular(v: string) {
+  const d = v.replace(/\D/g, "").slice(0, 11);
+  return d
+    .replace(/(\d{2})(\d)/, "($1) $2")
+    .replace(/(\d{5})(\d{1,4})$/, "$1-$2");
 }
 
 const iconesPasso = { compre: IcCopo, acumule: IcSparkles, resgate: IcEstrela } as const;

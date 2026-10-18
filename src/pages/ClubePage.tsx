@@ -34,32 +34,41 @@ const iconesPasso = { compre: IcCopo, acumule: IcSparkles, resgate: IcEstrela } 
 
 export default function ClubePage() {
   const [cpf, setCpf] = useState("");
+  const [celular, setCelular] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async () => {
     setError(null);
     const cpfLimpo = cpf.replace(/\D/g, "");
+    const celularLimpo = celular.replace(/\D/g, "");
     if (cpfLimpo.length !== 11) {
       setError("CPF inválido.");
+      return;
+    }
+    if (celularLimpo.length !== 11) {
+      setError("Celular inválido. Inclua o DDD.");
       return;
     }
     setLoading(true);
     try {
       const response = await fetch(
-        `${MISTURERACHECK_SUPABASE_URL}/rest/v1/customers?cpf=eq.${cpfLimpo}&select=token`,
+        `${MISTURERACHECK_SUPABASE_URL}/rest/v1/rpc/clube_acessar`,
         {
+          method: "POST",
           headers: {
             apikey: MISTURERACHECK_ANON_KEY,
             Authorization: `Bearer ${MISTURERACHECK_ANON_KEY}`,
+            "Content-Type": "application/json",
           },
+          body: JSON.stringify({ _cpf: cpfLimpo, _celular: celularLimpo }),
         },
       );
       const data = await response.json();
-      if (Array.isArray(data) && data[0]?.token) {
-        window.location.href = `https://clube.misturera.com/cliente/${data[0].token}`;
+      if (data?.ok && data?.token) {
+        window.location.href = `https://clube.misturera.com/cliente/${data.token}`;
       } else {
-        setError("CPF não encontrado. Cadastre-se em uma de nossas unidades ou pelo link abaixo.");
+        setError(data?.mensagem ?? "Não foi possível consultar agora. Tente novamente em instantes.");
       }
     } catch {
       setError("Não foi possível consultar agora. Tente novamente em instantes.");

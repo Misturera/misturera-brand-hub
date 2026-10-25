@@ -197,10 +197,10 @@ export default function ClubePage() {
                 <span>{b}</span>
               </li>
             ))}
-            </ul>
-            <p style={{ fontSize: 13, color: "var(--tinta-suave)", marginTop: 18 }}>
-              Funcionários da Misturêra não participam do Clube.
-            </p>
+          </ul>
+          <p style={{ fontSize: 13, color: "var(--tinta-suave)", marginTop: 18 }}>
+            Funcionários da Misturêra não participam do Clube.
+          </p>
         </div>
       </section>
     </Layout>

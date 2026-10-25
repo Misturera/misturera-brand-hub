@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { IcEstrela } from "@/components/icons";
 
-// Mini-cartão dourado de sócio. O "120 pontos" é ilustrativo (marketing);
+// Mini-cartão dourado de sócio. O "100 pontos" é ilustrativo (marketing);
 // o dado real vive no portal da MistureraCheck.
 export function MiniCardSocio() {
   const ref = useRef<HTMLDivElement>(null);
@@ -36,9 +36,9 @@ export function MiniCardSocio() {
       </div>
       <div>
         <div className="mc-num">
-          120<small>pontos</small>
+          100<small>pontos</small>
         </div>
-        <p className="mc-val">= R$ 12,00 em descontos</p>
+        <p className="mc-val">= R$ 10,00 em descontos</p>
       </div>
     </div>
   );

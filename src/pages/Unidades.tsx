@@ -28,7 +28,7 @@ export default function Unidades() {
         variante="musgo"
         eyebrow="Clube Misturêra"
         titulo="Cada visita vale pontos"
-        texto="Acumule pontos a cada compra e troque por desconto direto no caixa."
+        texto="Acumule pontos a cada compra e troque por desconto direto no caixa, usando até 50% de cada compra."
       >
         <Link className="btn btn-gold" to="/clube">
           Conheça o Clube

@@ -12,14 +12,12 @@ export interface PassoClube {
 export const passosClube: PassoClube[] = [
   { icone: "compre", titulo: "Compre", texto: "A cada R$ 1,00 você ganha 1 ponto." },
   { icone: "acumule", titulo: "Acumule", texto: "Pontos válidos por 60 dias, renováveis a cada compra." },
-  { icone: "resgate", titulo: "Resgate", texto: "10 pontos = R$ 1,00 de desconto." },
+  { icone: "resgate", titulo: "Resgate", texto: "10 pontos = R$ 1,00 de desconto, a partir de 100 pontos. Os pontos pagam até 50% de cada compra." },
 ];
 
 export const beneficiosClube: string[] = [
   "Descontos exclusivos para membros",
   "Ofertas e lançamentos em primeira mão",
-  "Ranking dos melhores clientes",
-  "Avalie sua experiência e ganhe pontos bônus",
 ];
 
 // Portal do sócio (cadastro) — clube.misturera.com.

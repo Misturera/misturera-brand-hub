@@ -82,7 +82,7 @@ export default function ClubePage() {
       <PageHero
         eyebrow="Clube Misturêra"
         titulo="Cada visita vale pontos"
-        texto="Acumule pontos a cada compra e troque por descontos."
+        texto="Acumule pontos a cada compra e troque por descontos, usando até 50% de cada compra."
       />
 
       {/* Como funciona — 3 passos */}
@@ -198,6 +198,9 @@ export default function ClubePage() {
               </li>
             ))}
           </ul>
+          <p style={{ fontSize: 13, color: "var(--tinta-suave)", maxWidth: 820, margin: "18px auto 0" }}>
+            Funcionários da Misturêra não participam do Clube.
+          </p>
         </div>
       </section>
     </Layout>

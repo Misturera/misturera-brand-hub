@@ -102,7 +102,7 @@ export default function Index() {
               <p className="eyebrow-d">Clube Misturêra</p>
               <h2>Cada visita vale pontos</h2>
               <p>
-                Junte pontos a cada compra e troque por desconto direto no caixa. Sem cartão físico —
+                Junte pontos a cada compra e troque por desconto direto no caixa, usando até 50% de cada compra. Sem cartão físico —
                 é só o seu CPF.
               </p>
               <Link className="btn btn-gold" to="/clube">

@@ -198,7 +198,7 @@ export default function ClubePage() {
               </li>
             ))}
           </ul>
-          <p style={{ fontSize: 13, color: "var(--tinta-suave)", marginTop: 18 }}>
+          <p style={{ fontSize: 13, color: "var(--tinta-suave)", maxWidth: 820, margin: "18px auto 0" }}>
             Funcionários da Misturêra não participam do Clube.
           </p>
         </div>

@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import {
   INICIOS,
   UNIDADES_VAGA,
+  VAGAS,
   TEXTO_LGPD,
   CURRICULO_TIPOS,
   CURRICULO_MAX_BYTES,
@@ -35,6 +36,7 @@ export default function TrabalheConosco() {
   const [unidades, setUnidades] = useState<string[]>([]);
   const alternarUnidade = (u: string) =>
     setUnidades((atual) => (atual.includes(u) ? atual.filter((x) => x !== u) : [...atual, u]));
+  const [vaga, setVaga] = useState("");
 
   const [fds, setFds] = useState<boolean | null>(null);
   const [inicio, setInicio] = useState("");
@@ -60,6 +62,7 @@ export default function TrabalheConosco() {
       e.whatsapp = "Informe um WhatsApp válido com DDD.";
     if (!bairroCidade.trim()) e.bairroCidade = "Informe seu bairro e cidade.";
     if (unidades.length === 0) e.unidades = "Escolha ao menos uma unidade.";
+    if (!vaga) e.vaga = "Escolha uma vaga de interesse.";
     if (curriculo) {
       if (!CURRICULO_TIPOS.includes(curriculo.type))
         e.curriculo = "Envie um arquivo PDF, JPG ou PNG.";
@@ -97,9 +100,8 @@ export default function TrabalheConosco() {
         maior_de_18: maiorDe18,
         whatsapp: whatsapp.replace(/\D/g, ""),
         bairro_cidade: bairroCidade.trim(),
-        // Campos fora do formulário por enquanto — mantidos no banco com valor neutro.
         unidade_interesse: unidades.join(", "),
-        vaga_interesse: "Não informado",
+        vaga_interesse: vaga,
         trabalha_fim_de_semana: fds ?? false,
         disponibilidade_inicio: inicio || "Não informado",
         tem_experiencia: experiencia ?? false,
@@ -206,6 +208,15 @@ export default function TrabalheConosco() {
                     ))}
                   </div>
                   <Erro campo="unidades" />
+                </div>
+
+                <div className="grupo">
+                  <label className="campo-label" htmlFor="r-vaga">Vaga de interesse</label>
+                  <select className="campo" id="r-vaga" value={vaga} onChange={(ev) => setVaga(ev.target.value)}>
+                    <option value="">Selecione</option>
+                    {VAGAS.map((v) => <option key={v} value={v}>{v}</option>)}
+                  </select>
+                  <Erro campo="vaga" />
                 </div>
 
                 <h2 className="bloco-titulo">Disponibilidade</h2>

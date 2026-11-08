@@ -43,7 +43,6 @@ Deno.serve(async (req) => {
     }
 
     const linhas = [
-      `Unidade de interesse: ${candidato.unidade_interesse}`,
       `Início: ${candidato.disponibilidade_inicio}`,
       candidato.maior_de_18 === null || candidato.maior_de_18 === undefined
         ? null
@@ -57,7 +56,13 @@ Deno.serve(async (req) => {
 
     const form = new FormData();
     form.append('nome', candidato.nome_completo);
-    form.append('cargo_desejado', candidato.vaga_interesse);
+    // A vaga saiu do formulário público; o funil exige um cargo, então candidaturas
+    // sem vaga entram como espontâneas (registros antigos mantêm a vaga informada).
+    const cargo =
+      candidato.vaga_interesse && candidato.vaga_interesse !== 'Não informado'
+        ? candidato.vaga_interesse
+        : 'Candidatura espontânea';
+    form.append('cargo_desejado', cargo);
     form.append('origem', 'site');
     form.append('observacoes', observacoes);
     if (candidato.whatsapp) form.append('telefone', candidato.whatsapp);

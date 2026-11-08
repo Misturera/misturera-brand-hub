@@ -59,12 +59,12 @@ export default function Contato() {
                             {l.telefoneExibicao}
                           </a>
                         ) : (
-                          <span>WhatsApp em breve</span>
+                          <span>{l.emBreve ? "A definir" : "WhatsApp em breve"}</span>
                         )}
                       </div>
                       <div className="ulinha">
                         <IcRelogio />
-                        <span>{HORARIO_RESUMO}</span>
+                        <span>{l.emBreve ? `A definir · ${l.emBreve}` : HORARIO_RESUMO}</span>
                       </div>
                       <div className="uacoes">
                         {wpp && (

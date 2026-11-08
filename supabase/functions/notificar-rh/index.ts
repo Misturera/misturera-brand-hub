@@ -42,7 +42,12 @@ Deno.serve(async (req) => {
       return json({ notificado: false, motivo: 'webhook_nao_configurado' });
     }
 
+    const unidadeInteresse =
+      candidato.unidade_interesse && candidato.unidade_interesse !== 'Não informado'
+        ? candidato.unidade_interesse
+        : null;
     const linhas = [
+      unidadeInteresse ? `Unidades de interesse: ${unidadeInteresse}` : null,
       `Início: ${candidato.disponibilidade_inicio}`,
       candidato.maior_de_18 === null || candidato.maior_de_18 === undefined
         ? null
@@ -65,6 +70,7 @@ Deno.serve(async (req) => {
     form.append('cargo_desejado', cargo);
     form.append('origem', 'site');
     form.append('observacoes', observacoes);
+    if (unidadeInteresse) form.append('unidade_interesse', unidadeInteresse);
     if (candidato.whatsapp) form.append('telefone', candidato.whatsapp);
     if (candidato.bairro_cidade) form.append('cidade', candidato.bairro_cidade);
 

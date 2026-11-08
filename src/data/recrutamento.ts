@@ -4,6 +4,7 @@ export const UNIDADES_VAGA = [
   "Santa Cruz da Serra",
   "Xerém",
   "Piabetá",
+  "Vila São Luís",
   "Fábrica",
 ] as const;
 

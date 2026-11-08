@@ -4,8 +4,6 @@ import { PageHero } from "@/components/PageHero";
 import { IcCheck, IcCopo, IcCoracao, IcEscudo, IcMedalha } from "@/components/icons";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  UNIDADES_VAGA,
-  VAGAS,
   INICIOS,
   TEXTO_LGPD,
   CURRICULO_TIPOS,
@@ -33,8 +31,6 @@ export default function TrabalheConosco() {
   const [maiorDe18, setMaiorDe18] = useState<boolean | null>(null);
   const [whatsapp, setWhatsapp] = useState("");
   const [bairroCidade, setBairroCidade] = useState("");
-  const [unidade, setUnidade] = useState("");
-  const [vaga, setVaga] = useState("");
 
   const [fds, setFds] = useState<boolean | null>(null);
   const [inicio, setInicio] = useState("");
@@ -56,15 +52,9 @@ export default function TrabalheConosco() {
   const validar = (): Erros => {
     const e: Erros = {};
     if (!nome.trim()) e.nome = "Informe seu nome completo.";
-    if (maiorDe18 === null) e.maiorDe18 = "Responda se você tem 18 anos ou mais.";
     if (whatsapp.replace(/\D/g, "").length !== 11)
       e.whatsapp = "Informe um WhatsApp válido com DDD.";
     if (!bairroCidade.trim()) e.bairroCidade = "Informe seu bairro e cidade.";
-    if (!unidade) e.unidade = "Escolha a unidade de interesse.";
-    if (!vaga) e.vaga = "Escolha a vaga de interesse.";
-    if (fds === null) e.fds = "Responda sobre fins de semana e feriados.";
-    if (!inicio) e.inicio = "Informe quando pode começar.";
-    if (experiencia === null) e.experiencia = "Responda sobre sua experiência.";
     if (curriculo) {
       if (!CURRICULO_TIPOS.includes(curriculo.type))
         e.curriculo = "Envie um arquivo PDF, JPG ou PNG.";
@@ -99,14 +89,15 @@ export default function TrabalheConosco() {
       const { error } = await supabase.from("candidatos").insert({
         id: candidatoId,
         nome_completo: nome.trim(),
-        maior_de_18: maiorDe18 as boolean,
+        maior_de_18: maiorDe18,
         whatsapp: whatsapp.replace(/\D/g, ""),
         bairro_cidade: bairroCidade.trim(),
-        unidade_interesse: unidade,
-        vaga_interesse: vaga,
-        trabalha_fim_de_semana: fds as boolean,
-        disponibilidade_inicio: inicio,
-        tem_experiencia: experiencia as boolean,
+        // Campos fora do formulário por enquanto — mantidos no banco com valor neutro.
+        unidade_interesse: "Não informado",
+        vaga_interesse: "Não informado",
+        trabalha_fim_de_semana: fds ?? false,
+        disponibilidade_inicio: inicio || "Não informado",
+        tem_experiencia: experiencia ?? false,
         ultimo_trabalho: ultimoTrabalho.trim() || null,
         motivacao: motivacao.trim() || null,
         curriculo_url: curriculoUrl,
@@ -199,24 +190,6 @@ export default function TrabalheConosco() {
                   <input className="campo" id="r-local" placeholder="Ex.: Xerém, Duque de Caxias"
                     value={bairroCidade} onChange={(ev) => setBairroCidade(ev.target.value)} maxLength={120} />
                   <Erro campo="bairroCidade" />
-                </div>
-
-                <div className="grupo">
-                  <label className="campo-label" htmlFor="r-unid">Unidade de interesse</label>
-                  <select className="campo" id="r-unid" value={unidade} onChange={(ev) => setUnidade(ev.target.value)}>
-                    <option value="">Selecione</option>
-                    {UNIDADES_VAGA.map((u) => <option key={u} value={u}>{u}</option>)}
-                  </select>
-                  <Erro campo="unidade" />
-                </div>
-
-                <div className="grupo">
-                  <label className="campo-label" htmlFor="r-vaga">Vaga de interesse</label>
-                  <select className="campo" id="r-vaga" value={vaga} onChange={(ev) => setVaga(ev.target.value)}>
-                    <option value="">Selecione</option>
-                    {VAGAS.map((v) => <option key={v} value={v}>{v}</option>)}
-                  </select>
-                  <Erro campo="vaga" />
                 </div>
 
                 <h2 className="bloco-titulo">Disponibilidade</h2>

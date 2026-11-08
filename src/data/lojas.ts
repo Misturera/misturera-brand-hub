@@ -17,6 +17,7 @@ export interface Loja {
   telefoneExibicao?: string;
   mapa: string;
   foto: string;
+  emBreve?: string;     // ex.: "Inauguração em dezembro" — loja ainda não aberta
 }
 
 // Horário comum a todas as unidades.
@@ -63,6 +64,18 @@ export const lojas: Loja[] = [
     mapa: "https://maps.app.goo.gl/4yL7QyTVtX4Rif8EA",
     foto: unidadeGenerica,
   },
+  {
+    id: "vila-sao-luis",
+    nome: "Vila São Luís",
+    nomeCompleto: "Misturêra Vila São Luís",
+    endereco: "Av. Brasil, Nº 241, Vila São Luís, Duque de Caxias – RJ, 25065-171",
+    referencia: "",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Av.%20Brasil%2C%20241%2C%20Vila%20S%C3%A3o%20Lu%C3%ADs%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025065-171",
+    foto: unidadeGenerica, // provisória até chegar a foto da loja
+    emBreve: "Inauguração em dezembro",
+  },
 ];
+
+export const lojasAbertas = lojas.filter((l) => !l.emBreve);
 
 export const lojasPorId = Object.fromEntries(lojas.map((l) => [l.id, l]));

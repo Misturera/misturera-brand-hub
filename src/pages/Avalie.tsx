@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { PageHero } from "@/components/PageHero";
 import { IcEstrela, IcCheck } from "@/components/icons";
-import { lojas } from "@/data/lojas";
+import { lojasAbertas as lojas } from "@/data/lojas";
 
 const criterios = [
   { id: "atendimento", label: "Atendimento" },

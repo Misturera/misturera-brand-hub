@@ -5,6 +5,7 @@ import { IcCheck, IcCopo, IcCoracao, IcEscudo, IcMedalha } from "@/components/ic
 import { supabase } from "@/integrations/supabase/client";
 import {
   INICIOS,
+  UNIDADES_VAGA,
   TEXTO_LGPD,
   CURRICULO_TIPOS,
   CURRICULO_MAX_BYTES,
@@ -31,6 +32,9 @@ export default function TrabalheConosco() {
   const [maiorDe18, setMaiorDe18] = useState<boolean | null>(null);
   const [whatsapp, setWhatsapp] = useState("");
   const [bairroCidade, setBairroCidade] = useState("");
+  const [unidades, setUnidades] = useState<string[]>([]);
+  const alternarUnidade = (u: string) =>
+    setUnidades((atual) => (atual.includes(u) ? atual.filter((x) => x !== u) : [...atual, u]));
 
   const [fds, setFds] = useState<boolean | null>(null);
   const [inicio, setInicio] = useState("");
@@ -55,6 +59,7 @@ export default function TrabalheConosco() {
     if (whatsapp.replace(/\D/g, "").length !== 11)
       e.whatsapp = "Informe um WhatsApp válido com DDD.";
     if (!bairroCidade.trim()) e.bairroCidade = "Informe seu bairro e cidade.";
+    if (unidades.length === 0) e.unidades = "Escolha ao menos uma unidade.";
     if (curriculo) {
       if (!CURRICULO_TIPOS.includes(curriculo.type))
         e.curriculo = "Envie um arquivo PDF, JPG ou PNG.";
@@ -93,7 +98,7 @@ export default function TrabalheConosco() {
         whatsapp: whatsapp.replace(/\D/g, ""),
         bairro_cidade: bairroCidade.trim(),
         // Campos fora do formulário por enquanto — mantidos no banco com valor neutro.
-        unidade_interesse: "Não informado",
+        unidade_interesse: unidades.join(", "),
         vaga_interesse: "Não informado",
         trabalha_fim_de_semana: fds ?? false,
         disponibilidade_inicio: inicio || "Não informado",
@@ -190,6 +195,17 @@ export default function TrabalheConosco() {
                   <input className="campo" id="r-local" placeholder="Ex.: Xerém, Duque de Caxias"
                     value={bairroCidade} onChange={(ev) => setBairroCidade(ev.target.value)} maxLength={120} />
                   <Erro campo="bairroCidade" />
+                </div>
+
+                <div className="grupo">
+                  <p className="campo-label">Unidade de interesse (pode marcar mais de uma)</p>
+                  <div className="opcoes">
+                    {UNIDADES_VAGA.map((u) => (
+                      <button key={u} type="button" className={`opcao${unidades.includes(u) ? " on" : ""}`}
+                        aria-pressed={unidades.includes(u)} onClick={() => alternarUnidade(u)}>{u}</button>
+                    ))}
+                  </div>
+                  <Erro campo="unidades" />
                 </div>
 
                 <h2 className="bloco-titulo">Disponibilidade</h2>

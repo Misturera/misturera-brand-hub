@@ -12,6 +12,11 @@ export function UnidadeCard({ loja }: { loja: Loja }) {
         <img src={loja.foto} alt={loja.nome} loading="lazy" />
       </div>
       <div className="unidade-corpo">
+        {loja.emBreve && (
+          <span style={{ display: "inline-block", background: "var(--dourado)", color: "var(--verde-900)", fontWeight: 600, fontSize: 12, padding: "4px 10px", borderRadius: 999, marginBottom: 8 }}>
+            {loja.emBreve}
+          </span>
+        )}
         <h3>{loja.nome}</h3>
 
         <div className="ulinha">
@@ -29,7 +34,7 @@ export function UnidadeCard({ loja }: { loja: Loja }) {
               {loja.telefoneExibicao}
             </a>
           ) : (
-            <span>WhatsApp em breve</span>
+            <span>{loja.emBreve ? "A definir" : "WhatsApp em breve"}</span>
           )}
         </div>
 
@@ -38,7 +43,9 @@ export function UnidadeCard({ loja }: { loja: Loja }) {
             <IcRelogio />
             Horário de funcionamento
           </div>
-          {HORARIO_DETALHADO.map((h, i) => (
+          {loja.emBreve ? (
+            <div className="uhoras-row"><span>A definir</span></div>
+          ) : HORARIO_DETALHADO.map((h, i) => (
             <div className="uhoras-row" key={i}>
               <span>{h.dias}</span>
               <span>{h.horas}</span>
@@ -57,10 +64,12 @@ export function UnidadeCard({ loja }: { loja: Loja }) {
               WhatsApp
             </a>
           )}
-          <Link className="btn btn-linha btn-sm" to="/avalie">
-            <IcEstrela />
-            Avaliar
-          </Link>
+          {!loja.emBreve && (
+            <Link className="btn btn-linha btn-sm" to="/avalie">
+              <IcEstrela />
+              Avaliar
+            </Link>
+          )}
         </div>
       </div>
     </div>

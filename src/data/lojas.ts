@@ -1,6 +1,7 @@
 import unidadeSantaCruz from "@/assets/unidade-santa-cruz-fachada.jpg";
 import unidadeXerem from "@/assets/unidade-xerem-interior.jpg";
 import unidadeGenerica from "@/assets/gelatos-cubas.jpg";
+import fotoVilaSaoLuis from "@/assets/unidade-vila-sao-luis-fachada.png.asset.json";
 
 export interface HorarioRow {
   dias: string;
@@ -71,7 +72,7 @@ export const lojas: Loja[] = [
     endereco: "Av. Brasil, Nº 241, Vila São Luís, Duque de Caxias – RJ, 25065-171",
     referencia: "",
     mapa: "https://www.google.com/maps/search/?api=1&query=Av.%20Brasil%2C%20241%2C%20Vila%20S%C3%A3o%20Lu%C3%ADs%2C%20Duque%20de%20Caxias%20-%20RJ%2C%2025065-171",
-    foto: unidadeGenerica, // provisória até chegar a foto da loja
+    foto: fotoVilaSaoLuis.url,
     emBreve: "Inauguração em dezembro",
   },
 ];

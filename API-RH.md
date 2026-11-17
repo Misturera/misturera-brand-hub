@@ -48,7 +48,9 @@ curl -H "x-api-key: $RH_API_KEY" \
 Quando alguém envia o formulário de "Trabalhe conosco", este projeto dispara um POST
 para o endpoint do sistema de RH (secret `RH_WEBHOOK_URL`), com header
 `x-captacao-token: <RH_CAPTACAO_TOKEN>` e corpo `multipart/form-data` contendo
-`nome`, `cargo_desejado`, `origem`, `telefone`, `cidade`, `observacoes` e, quando houver,
+`nome`, `cargo_desejado`, `origem`, `telefone`, `cidade`, `observacoes`, `unidade_interesse`,
+`site_id` (id da inscrição, para o RH não registrar duas vezes), `fins_semana_feriados`,
+`experiencia_atendimento_alimentacao`, `ultimo_trabalho` e, quando houver,
 o arquivo `curriculo` (PDF/JPG/PNG) baixado do armazenamento privado.
 
 Corpo enviado (legado, JSON):

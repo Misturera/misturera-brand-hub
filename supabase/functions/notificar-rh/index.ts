@@ -73,6 +73,13 @@ Deno.serve(async (req) => {
     if (unidadeInteresse) form.append('unidade_interesse', unidadeInteresse);
     if (candidato.whatsapp) form.append('telefone', candidato.whatsapp);
     if (candidato.bairro_cidade) form.append('cidade', candidato.bairro_cidade);
+    // Respostas que a triagem filtra: vão em campo próprio, não só no texto.
+    form.append('site_id', candidato.id);
+    if (typeof candidato.trabalha_fim_de_semana === 'boolean')
+      form.append('fins_semana_feriados', String(candidato.trabalha_fim_de_semana));
+    if (typeof candidato.tem_experiencia === 'boolean')
+      form.append('experiencia_atendimento_alimentacao', String(candidato.tem_experiencia));
+    if (candidato.ultimo_trabalho) form.append('ultimo_trabalho', candidato.ultimo_trabalho);
 
     // Anexa o currículo (arquivo privado) quando existir
     if (candidato.curriculo_url) {
